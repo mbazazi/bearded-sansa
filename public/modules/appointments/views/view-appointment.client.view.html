@@ -1,0 +1,117 @@
+
+<section data-ng-controller="AppointmentsController" data-ng-init="findOne()">
+
+<!-- 	<div class="col-md-12">
+	
+		<table class="table table-border">
+		<tr>
+			<th>Client Name</th>
+			<th>Staff Name</th>
+			<th>Appointment Date</th>
+			<th>Job Done</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+			<td>{{appointment.client[0].displayName}}</td>
+			<td>{{appointment.staff_id[0].displayName}}</td>
+			<td>{{appointment.appointment_date | date:'mediumDate'}}</td>
+			<td><input class="form-control"
+                            bs-switch
+                            ng-model="app.jobDone"
+                            type="checkbox"
+                            switch-on-text="{{ onText }}"
+                            switch-off-text="{{ offText }}"
+                            ng-change="selectChange(app)"
+                            name="jobDone_check"
+                                ></td>
+			<td><a class="btn btn-primary" ui-sref="appointment_edit({appointmentId: appointment._id})">
+			<i class="glyphicon glyphicon-edit"></i>
+			</a></td>
+			<td><a class="btn btn-primary" data-ng-click="remove(appointment);">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a></td>
+		</table>
+
+
+</div>
+ -->
+<rd-widget>
+   			<rd-widget-header icon="fa-user" title="Client Name: {{appointment.client[0].displayName}}">
+<!--    				<button class="btn btn-sm btn-info">Button</button>
+ -->   			</rd-widget-header>
+   			<rd-widget-body>
+
+<div class="col-sm-4">
+<div class="form-group">
+<h4><strong>Client Name:<br> {{appointment.client[0].displayName}}</h4></strong>
+<h5>Appointment Date:<br>
+ {{appointment.appointment_date | date:'fullDate'}}</h5>
+ </div>
+<div class="form-group">
+<strong>Staff Member: </strong>{{appointment.staff_id[0].displayName}}
+</div>
+	<div class="form-group">
+		<address>
+		{{appointment.client[0].address.main_address.street_1}}</br>
+		{{appointment.client[0].address.main_address.city}}</br>
+		{{appointment.client[0].address.main_address.postcode}}</br>
+		</address>
+	</div>
+	<div class="form-group" ng-if="authentication.showAdmin">
+	<label for="jobDone_check">Job Done:</label>
+		<input class="form-control"
+	                            bs-switch
+	                            ng-model="app.jobDone"
+	                            type="checkbox"
+	                            switch-on-text="{{ onText }}"
+	                            switch-off-text="{{ offText }}"
+	                            ng-change="selectChange(app)"
+	                            name="jobDone_check"
+	                                >
+	</div>
+
+<hr>
+<div>
+		<em >
+			Appointment Created on
+			<span data-ng-bind="appointment.created | date:'fullDate'"></span>
+			
+		</em>
+	</div>
+<div ng-if="authentication.showAdmin">
+<a class="btn btn-primary" ui-sref="appointment_edit({appointmentId: appointment._id})">Edit
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove(appointment);">
+			Delete<i class="glyphicon glyphicon-trash"></i>
+		</a>
+
+		<!-- <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == appointment.user._id))">
+		<a class="btn btn-primary" href="/appointments/{{appointment._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+		</div> -->
+</div>
+</div>
+	
+	
+<div class="col-md-8">
+	
+	<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+
+				<ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker>
+				       
+				</ui-gmap-google-map>
+
+
+</div>
+	<hr />
+				<div class="message">
+					<a href="http://angular-ui.github.io/bootstrap/" target="_blank">UI Bootstrap</a> is included, so you can use <a href="#" tooltip="I'm a tooltip!">tooltips</a> and all of the other native Bootstrap JS components!
+				</div>
+   			</rd-widget-body>
+   		</rd-widget>
+</section>

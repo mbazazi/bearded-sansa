@@ -1,0 +1,117 @@
+<section class="row view-container" data-ng-controller="SettingsController">
+<div class="col-sm-5">
+	<h3 class="text-center">Edit your profile</h3>
+		
+	<div>
+		
+   <!-- <h2>Single image with resizing</h2>
+        <div>
+            <label for="inputImage2">Image 2</label>
+            
+            <input id="inputImage2" 
+                type="file" 
+                accept="image/*" 
+                image="image2" 
+                resize-max-height="300"
+                resize-max-width="250"
+                resize-quality="0.7" />
+            
+            <p>Original</p>
+            <img ng-show="image2" ng-src="{{image2.url}}" type="{{image2.file.type}}"/>
+            <p>Resized</p>
+            <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
+            <button type="submit" ng-click="single(image2.resized)" disabled>Add</button>
+        </div> -->
+
+        <h4>Your Profile Pic</h4>
+        <div>
+            <label for="inputImage2">Your Profile</label>
+            <img ng-src='{{imageSrc}}'>
+            <input class="btn btn-success"
+            	 id="inputImage2" 
+                type="file" 
+                accept="image/*" 
+                image="image2" 
+                ng-model="files"
+                resize-max-height="300"
+                resize-max-width="250"
+                resize-quality="0.7" />
+           
+            <p>Resized</p>
+            <img class="img img-responsive img-circle" ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
+            <button ng-click="single(image2.resized)">Add</button>
+        </div>
+        <hr />
+
+
+
+<!-- <div>
+    watching model:
+    <div class="btn btn-success" ngf-select ng-model="files">Upload using model $watch</div>
+    Drop File:
+    <div ngf-drop ng-model="files" class="drop-box" 
+        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+        ngf-accept="'image/*,application/pdf'">Drop Images or PDFs files here</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+    Image thumbnail: <img ngf-src="files[0]" ngf-default-src="'./profile_pics/thumb.jpg'" ngf-accept="'image/*'" >
+    Audio preview: <audio controls ngf-src="files[0]" ngf-accept="'audio/*'"></audio>
+    Video preview: <video controls ngf-src="files[0]" ngf-accept="'video/*'"></video>
+</div> -->
+			<form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
+				<fieldset>
+
+
+					<div class="form-group">
+						<label for="firstName">First Name</label>
+						<input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" placeholder="First Name">
+					</div>
+					<div class="form-group">
+						<label for="lastName">Last Name</label>
+						<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" placeholder="Last Name">
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<label for="address">Address</label>
+						<input type="text" id="address" name="street_1" class="form-control" data-ng-model="user.address.main_address.street_1" placeholder="e.g. 2k - 150 Beverley Street">
+						<input type="text" id="address2" name="street_2" class="form-control" data-ng-model="user.address.main_address.street_2" placeholder="Street 2">
+						<input type="text" id="address2" name="street_2" class="form-control" data-ng-model="user.address.main_address.city" placeholder="City">
+						<input type="text" id="address2" name="street_2" class="form-control" data-ng-model="user.address.main_address.postcode" placeholder="Postcode">
+					</div></pane>
+					<div class="text-center form-group">
+						<button type="submit" class="btn btn-large btn-primary">Save Profile</button>
+					</div>
+				
+					
+					<div data-ng-show="success" class="text-center text-success">
+						<strong>Profile Saved Successfully</strong>
+					</div>
+					<div data-ng-show="error" class="text-center text-danger">
+						<strong data-ng-bind="error"></strong>
+
+					</div>
+				</fieldset>
+			</form>
+		</div>
+</div>
+<div class="col-sm-5 col-sm-offset-1" ng-if="card">
+
+<h4>Payment details</h4>
+<div class="form-group">
+	<strong>Card Number</strong>: **** **** **** {{card.last4}}
+</div>
+<div class="form-group">
+	<strong>Expires</strong>: {{card.exp_month}} / {{card.exp_year}}
+</div>
+<div class="form-group">
+	<strong>Type</strong>: {{card.brand}}
+</div>
+<button class="btn btn-warning" ui-sref="profile.payment">Edit Payment Details</button>
+
+</div>
+
+<div class="col-sm-5 col-sm-offset-1" ui-view></div>
+</section>

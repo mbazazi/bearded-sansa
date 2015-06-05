@@ -1,0 +1,48 @@
+<section data-ng-controller="ArticlesController">
+	<div class="page-header">
+		<h1>Articles</h1>
+		<p><button class="btn btn-success">View articles</button></p>
+		<p><button class="btn btn-success" ui-sref="listArticles.createArticle">Create A New Article</button></p>
+
+	</div>
+	<div class="list-group col-md-6">
+		<table class="table table-border">
+			<tr>
+                <th>Title</td>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Delete</th>
+                <th>View</th>
+             </tr>
+             <tr data-ng-repeat="article in articles">
+             	<td data-ng-bind="article.title"><a data-ng-href="/articles/{{article._id}}">{{article.title}}</td>
+             	<td data-ng-bind="article.user.displayName">{{article.user.displayName}}</td>
+             	<td>{{article.created | date:'mediumDate'}}</td>
+             	<td><button class="btn btn-warning" ng-click="remove(article)">Delete</td>
+             	<td><button class="btn btn-danger" ui-sref="listArticles.viewArticle({articleId: article._id})">View</td>
+             </tr>
+			
+		</table>
+		<!-- <a data-ng-repeat="article in articles" data-ng-href="/articles/{{article._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="article.created | date:'mediumDate'"></span>
+				by
+				<span data-ng-bind="article.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="article.title"></h4>
+			<p class="list-group-item-text" data-ng-bind="article.content"></p>
+		</a> -->
+<!-- 		<button class="btn btn-success" ui-sref="listArticles.listAppointments">Show All Appointments</button>
+ -->	</div>
+	<div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
+		No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
+	</div>
+<pre>{{myAppointment}}</pre>
+<button ng-click="myAppointment.removeData()" class="btn btn-warning">Delete the data</button>
+</section>
+<div class="col-md-12" ui-view></div>
+<!-- <div class="col-md-4" data-ng-controller="AppointmentsController" data-ng-init="find()">
+
+<div ui-view></div>
+</div> -->

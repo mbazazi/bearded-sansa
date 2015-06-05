@@ -1,0 +1,32 @@
+<div >
+<h3>Check out your order</h3>
+    <div class="show_on_complete" ng-show="formData.appointment_date"> 
+        <p>You currently have {{formData.total_time}} hours with an RMT at:</p>
+             <b>{{formData.appointment_date | date:'shortTime' }}, {{formData.appointment_date | date:'fullDate' }}</b>
+    </div><br>
+    <div ng-show="formData.total_time">
+        <hr>
+        <p> Your treatment will include:</p>
+        <dl>
+            <dt ng-show="formData.deep">Deep Tissue Massage.</dt>
+            <dt ng-show="formData.swedish">Swedish Masssage.</dt>
+            <dt ng-show="formData.head">Head and Shoulders Treatement.</dt>
+            <dt ng-show="formData.back">Back Massage. </dt>
+        </dl>
+        <hr>
+       
+        <div style="width:50%; float:left;"><strong> Total Cost:</strong></div>
+        <div class="col-md-offset-10"> ${{formData.total_time*85}}</div>
+    </div>
+    <hr>
+    <div style="margin-top:15%;">
+    <div class="row" >
+
+        <h4>Additional Information</h4>
+        <p><small> You will not be charged until your treatement has been completed.</small></p>
+        <p><small> Once you have been charged you will recieve an emailed invoice, which can be used for any insurance plans - see <a ui-sref="#">here</a> for more details.</small></p>
+    </div>
+    <hr>
+    </div>
+</div>
+

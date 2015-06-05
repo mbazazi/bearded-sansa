@@ -1,0 +1,136 @@
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  </div>
+</div>
+
+<div class="row" data-ng-controller="AdminsController">
+
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon green pull-left">
+					<i class="fa fa-calendar"></i>
+				</div>
+				<div class="title">{{total_apps}}</div>
+				<div class="comment">Appointments</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-3 col-md-6 col-xs-12" ng-if="!isClient">
+		<rd-widget>
+			<rd-widget-body>
+
+
+				<div class="widget-icon blue pull-left">
+					<i class="fa fa-users"></i>
+				</div>
+				<div class="title">{{users.length}}</div>
+				<div class="comment">Users</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon red pull-left">
+					<i class="fa fa-comment"></i>
+				</div>
+
+				<div class="title">20</div>
+				<div class="comment">Messages</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-sm-12">
+	<button ng-click="viewCancelledAppointments()" class="btn btn-success">Cancelled Apps</button>
+	<button ng-click="appointmentsGetter({cancelled: false})" class="btn btn-success"> View Apps</button>
+	<rd-widget>
+			<div class="col-sm-5 pull-right">
+						Search Appointments<input type="text" placeholder="Search" class="form-control input-sm" ng-model="query"/>
+						Sort by:
+		                <select class="form-control" ng-model="orderProp">
+		                  <option value="displayName">Alphabetical</option>
+		                  <option value="created">Most Recently Added</option>
+		                  <option value="jobDone">Job Done</option>
+		                </select>
+					</div>
+			<rd-widget-header icon="fa-calendar" title="Appointments">
+				
+			</rd-widget-header>
+			<rd-widget-body classes="medium no-padding">
+				<div class="table-responsive">
+					 <table class="table table-striped">
+                       <tr>
+                        <th>Client</th>
+                        <td>Date of Appointment</td>
+                        <th>Date Added</th>
+                        <th>Staff Assigned</th>
+                        <th ng-if="!isClient">Job Done</th>
+                        <th>View Details</th>
+                        <th ng-if="!isClient">Delete</th>
+						<th ng-if="isClient">Cancel</th>
+                        
+                     </tr>
+                    <tr dir-paginate="app in appointments | filter:query | orderBy: orderProp | itemsPerPage : items">
+                       <td data-ng-bind="app.client[0].displayName"><a data-ng-href="/user/{{user._id}}"></a></td>
+                        <td > {{app.appointment_date | date:'mediumDate'}}</td>
+                        <td>{{app.appointment_date | date:'mediumDate'}}</td>
+                        <td>{{app.staff_id[0].displayName}} </td>
+                       
+                        <td ng-if="!isClient">
+                        <input class="form-control"
+                            bs-switch
+                            ng-model="app.jobDone"
+                            type="checkbox"
+                            switch-on-text="{{ onText }}"
+                            switch-off-text="{{ offText }}"
+                            ng-change="selectChange(app)"
+                            name="jobDone_check"
+                                >
+                        </td>
+                        <td><button class="btn btn-warning" ui-sref="rdash.dash.view({appointmentId: app._id})">View</button></td>   
+                        <td><button class="btn btn-danger" ng-click="cancelAppointment(app)">Cancel</button></td>       
+                    </tr>
+                      
+                    </table>
+
+					
+        		</div>
+        	<!-- <rd-widget-footer>
+				
+                <label for="items">Items per Page</label>
+                <select class="form-control" ng-model="items">
+                 <option value="2">2</option>
+                 <option value="5">5</option>
+                 <option value="10">10</option>
+                 <option value="15">15</option>
+                 <option value="25">25</option>
+                 <option value="50">50</option>
+              </select>
+        	</rd-widget-footer> -->
+        		
+			</rd-widget-body>
+			
+		<rd-widget>
+	</divs>
+</div>
+</div>
+
+<div class="row">
+	<div  class="col-xs-12">
+   		<div ui-view></div>
+
+	</div>
+	<!-- <div class="col-lg-6">
+		<rd-widget>
+			<rd-widget-header icon="fa-cog fa-spin" title="Loading Directive">
+				<a href="http://tobiasahlin.com/spinkit/" target="_blank">SpinKit</a>
+			</rd-widget-header>
+			<rd-widget-body>
+				<rd-loading></rd-loading>
+			</rd-widget-body>
+		</rd-widget>
+	</div> -->
+</div>

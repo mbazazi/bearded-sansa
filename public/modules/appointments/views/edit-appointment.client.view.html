@@ -1,0 +1,57 @@
+<section data-ng-controller="AppointmentsController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>Edit Appointment</h1>
+    </div>
+    {{appointment}}
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="update()" novalidate>
+            <fieldset>
+                 <fieldset>
+               <div class="form-group">
+                    <label class="control-label" for="name">Client Name</label>
+                    <div class="controls">
+                       {{appointment.client[0].displayName}} 
+                            
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="control-label" for="name">Appointment Date</label>
+                    <div class="controls">
+                     <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="appointment.appointment_date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions"  readonly-time="false"></datetimepicker>  
+
+                    </div>
+                </div>
+                   <div class="form-group">
+                    <label class="control-label" for="name">Staff Assigned</label>
+                    <div class="controls">
+                       {{appointment.staff_id[0].name}} 
+                            <select class="form-control" name="staff" 
+                            ng-options="staff._id as staff.displayName for staff in staffList" 
+                            ng-model="appointment.staff_id" 
+                            >
+                                <option ></option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                <input class="form-control"
+                            bs-switch
+                            ng-model="app.jobDone"
+                            type="checkbox"
+                            switch-on-text="{{ onText }}"
+                            switch-off-text="{{ offText }}"
+                            ng-change="selectChange(app)"
+                            name="jobDone_check"
+                                >
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+            </fieldset>
+        </form>
+    </div>
+</section>

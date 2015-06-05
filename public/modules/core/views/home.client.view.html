@@ -1,0 +1,127 @@
+<section data-ng-controller="HomeController">
+<div class="container-fluid ">	
+<!-- Section: intro -->
+<div class="col-md-7 view-container "> 
+           
+            
+            <form name="myform" id="signup-form" ng-submit="submitAction()" novalidate>
+
+                <div id="form-views" ui-view> 
+                     <div class="text-center">
+                      <h2>Get a Masseur Now</h2>
+                          <div>
+                               <p> All our RMTs are vetted, licensed and covered by most insurance plans are Registered Massage Therapists</p>
+                               <p> Quick - Reliable - Easy</p>
+
+                           <button class="btn btn-success btn-lg" ui-sref='home.date'>Book now</button>
+                           <br><br>
+                                <div ng-if="!authentication.user._id">
+                               <small >Already A Member?</small>
+                                <a ui-sref="signin">Sign in</a>
+                                </div>
+                           </div>
+                     </div>
+
+                </div>
+            </form>
+</div>
+    <div class="col-md-4 view-container from-top">
+    <div ui-view="checkout"></div>
+    </div>
+</div>
+
+<pre>MyAppointment Var is: {{myAppointment}}</pre>
+<pre>$scope.FormData Var is: {{formData}}</pre>
+
+    	
+    		<!-- 
+    		<div class="page-scroll">
+    			<a href="#service" class="btn btn-circle">
+    				<i class="fa fa-angle-double-down animated"></i>
+    			</a>
+    		</div> -->
+</div>  
+
+</section>
+
+	<!-- /Section: intro -->
+
+	<!-- Section: about -->
+ <!--    <section id="about" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.4s">
+					<div class="section-heading">
+					<h2>About us</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+		<div class="row">
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.2s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Anna Hanaceck</h5>
+                        <p class="subtitle">Pixel Crafter</p>
+                        <div class="avatar"><img src="img/team/1.jpg" alt="" class="img-responsive img-circle" /></div>
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.5s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Maura Daniels</h5>
+                        <p class="subtitle">Ruby on Rails</p>
+                        <div class="avatar"><img src="img/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="0.8s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Jack Briane</h5>
+                        <p class="subtitle">jQuery Ninja</p>
+                        <div class="avatar"><img src="img/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-3 col-md-3">
+				<div class="wow bounceInUp" data-wow-delay="1s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+						<h5>Tom Petterson</h5>
+                        <p class="subtitle">Typographer</p>
+                        <div class="avatar"><img src="img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                    </div>
+                </div>
+				</div>
+            </div>
+        </div>		
+		</div>
+	</section> -->
+	<!-- /Section: about -->
+	
+
+	<!-- Section: services -->

@@ -1,0 +1,52 @@
+<section data-ng-controller="AppointmentsController">
+    <div class="page-header">
+        <h1>New Appointment</h1>
+    </div>
+
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+               <div class="form-group">
+                    <label class="control-label" for="name">Client Name</label>
+                    <div class="controls">
+                       {{app.staff_id[0].name}} 
+                            <select class="form-control" name="client" 
+                            ng-options="client._id as client.displayName for client in clientList" 
+                            ng-model="formData.client" 
+                            >
+                                <option ></option>
+                            </select>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="control-label" for="name">Appointment Date</label>
+                    <div class="controls">
+                     <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="formData.appointment_date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions"  readonly-time="false"></datetimepicker>  
+
+                    </div>
+                </div>
+                   <div class="form-group">
+                    <label class="control-label" for="name">Staff Assigned</label>
+                    <div class="controls">
+                       {{app.staff_id[0].name}} 
+                            <select class="form-control" name="staff" 
+                            ng-options="staff._id as staff.displayName for staff in staffList" 
+                            ng-model="formData.staff_id" 
+                            >
+                                <option ></option>
+                            </select>
+                    </div>
+                </div>
+
+             
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+   
+</section>

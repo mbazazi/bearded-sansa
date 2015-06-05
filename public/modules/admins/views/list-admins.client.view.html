@@ -1,0 +1,141 @@
+<section ng-init="showUsers()">
+       
+       <div class="panel-heading"> Users</div>
+       <div>
+        <button class="btn btn-default" ng-click="showUsers()">Show All Users</button>
+        <button class="btn btn-default" ng-click="showStaff()">Show Staff</button>
+                <button class="btn btn-default" ui-sref="adduser">Create User</button>
+                <button class="btn btn-default" ng-click="viewCancelledAppointments()">Cancelled Appointments </button>
+
+                <button class="btn btn-default"  ng-click="open()"> Add A Job</button>
+      </div>
+    <div class="row">
+ 
+           
+            <div class="col-sm-3 col-lg-3 ">
+                             Search: <input class="form-control" type="text" ng-model="query">
+                Sort by:
+                <select class="form-control" ng-model="orderProp">
+                  <option value="displayName">Alphabetical</option>
+                  <option value="created">Most Recently Added</option>
+                  <option value="jobDone">Job Done</option>
+                </select>
+                <label for="items">Items per Page</label>
+                <select class="form-control" ng-model="items">
+                 <option value="2">2</option>
+                 <option value="5">5</option>
+                 <option value="10">10</option>
+                 <option value="15">15</option>
+                 <option value="25">25</option>
+                 <option value="50">50</option>
+              </select>
+                <br>
+              
+
+
+            </div>
+
+
+
+
+        <div class="col-sm-8 col-lg-8">
+          
+                <tabs><pane title="Users" >
+
+                       <table class="table table-border">
+                     
+                       <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date Added</th>
+                        <th>Role</th>
+                        <th>View</th>
+                     </tr>
+                <tr dir-paginate="user in users | filter:query | orderBy: orderProp | itemsPerPage : items">
+                <td data-ng-bind="user.displayName"><a data-ng-href="/user/{{user._id}}"></a></td>
+                <td data-ng-bind="user.email"></td>
+                <td>{{user.created | date:'mediumDate'}}</td>
+                 <td>{{user.roles[0] }}</td>
+              <!--   <td><button class="btn btn-warning" ng-click="removeUser(user)">Delete</button></td> -->
+                <td><button class="btn btn-danger" ui-sref="admin.edituser({id: user._id})">View</button></td>
+                      </tr>
+                      
+                      </tr>
+                    </table>
+                </pane>
+
+<!--   The Appointments Pane --> 
+            <pane title="Appointments" >
+                <div class="container">
+                <p><button ui-sref="create_appointment" class="btn btn-success">Create Appointment</button></p>
+                 <div class="row" >
+                    <div class="col-md-8">
+                     <table class="table table-border">
+                     
+                       <tr>
+                        <th>Client</th>
+                        <th>Date</th>
+                        <th>Date Added</th>
+                        <th>Staff Assigned</th>
+                        <th>Job Done</th>
+                        <th>View Details</th>
+                        <th>Delete</th>
+                        
+                     </tr>
+                    <tr dir-paginate="app in appointments | filter:query | orderBy: orderProp | itemsPerPage : items">
+                       <td data-ng-bind="app.client[0].displayName"><a data-ng-href="/user/{{user._id}}"></a></td>
+                        <td > {{app.appointment_date | date:'mediumDate'}}</td>
+                        <td>{{app.appointment_date | date:'mediumDate'}}</td>
+                        <td>{{app.staff_id[0].displayName}} </td>
+                       
+                        <td>
+                        <input class="form-control"
+                            bs-switch
+                            ng-model="app.jobDone"
+                            type="checkbox"
+                            switch-on-text="{{ onText }}"
+                            switch-off-text="{{ offText }}"
+                            ng-change="selectChange(app)"
+                            name="jobDone_check"
+                                >
+                        </td>
+                        <td><button class="btn btn-warning" ui-sref="admin.appointments_view({appointmentId: app._id})">View</button></td>   
+                        <td><button class="btn btn-danger" ng-click="deleteAppointment(app)">Delete</button></td>       
+                    </tr>
+                      
+                    </table>
+                  
+             
+                    </div><!-- closes the col-md-8 -->
+                    </div> <!-- closes row -->
+                </div> <!-- closes container -->
+              </pane>
+                 
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+     
+    </div> <!-- closes row -->
+<div class="row">
+    
+                <div class="col-sm-12 col-lg-12 ">
+                 <div ui-view></div>
+               </div>  
+
+</div>
+
+
+
+<div class="col-md-10">{{staff}}</div>
+<div ng-show="error">{{error}}</div>
+
+
+
+
+
+
+
+
+
+
+
+</section>

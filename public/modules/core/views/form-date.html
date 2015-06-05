@@ -1,0 +1,97 @@
+
+<h1>Massage Booking</h1>
+<h4>When would you like to see an RMT?</h4>
+
+ 	<div class="form-group" ng-class="{ 'has-error' : myform.date.$invalid && !myform.date.$pristine }">
+      
+       <div class=""> 
+         <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="formData.appointment_date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" ng-required readonly-time="false"></datetimepicker>   
+      
+      </div>
+
+  </div>
+
+  <span class="has-error" ng-if="myform.date.$error.required"></span>
+  </div>
+<div class="form-group">
+
+<div class="form-group" ng-class="{ 'has-error' : myform.time_req.$invalid && !myform.time_req.$pristine }">
+    <h4>How long would you like your session to last?</h4>
+     <select name="total_time" class="form-control" ng-model="formData.total_time" 
+          ng-options="item.hours as item.desc for item in items" ng-change="setTotalPrice(formData)" required></select>
+
+</div>
+<div class="form-group" ng-show="formData.total_time">
+ <h4>Any particular kind of massage?</h4>
+  <div class="[ col-xs-12 col-sm-6 ]">
+          <div class="[ form-group ]">
+              <input type="checkbox" name="deep" id="deep" ng-model="formData.deep" value="deep" autocomplete="off" />
+              <div class="[ btn-group ]">
+                  <label for="deep" class="[ btn btn-info ]">
+                      <span class="[ glyphicon glyphicon-ok ]"></span>
+                      <span> </span>
+                  </label>
+                  <label for="deep" class="[ btn btn-default active ]">
+                      Deep Tissue
+                  </label>
+              </div>
+          </div>
+          <div class="[ form-group ]">
+              <input type="checkbox" name="swedish" id="swedish" ng-model="formData.swedish" autocomplete="off" />
+              <div class="[ btn-group ]">
+                  <label for="swedish" class="[ btn btn-info ]">
+                      <span class="[ glyphicon glyphicon-ok ]"></span>
+                      <span> </span>
+                  </label>
+                  <label for="swedish" class="[ btn btn-default active ]">
+                     Swedish
+                  </label>
+              </div>
+          </div>
+
+   </div>
+
+  <div class="[ col-xs-12 col-sm-6 ]">
+          <div class="[ form-group ]">
+              <input type="checkbox" name="head" id="head" ng-model="formData.head" autocomplete="off" />
+              <div class="[ btn-group ]">
+                  <label for="head" class="[ btn btn-info ]">
+                      <span class="[ glyphicon glyphicon-ok ]"></span>
+                      <span> </span>
+                  </label>
+                  <label for="head" class="[ btn btn-default active ]">
+                      Head and Shoulders
+                  </label>
+              </div>
+          </div>
+          <div class="[ form-group ]">
+              <input type="checkbox" name="back" id="back" ng-model="formData.back" autocomplete="off" />
+              <div class="[ btn-group ]">
+                  <label for="back" class="[ btn btn-info ]">
+                      <span class="[ glyphicon glyphicon-ok ]"></span>
+                      <span> </span>
+                  </label>
+                  <label for="back" class="[ btn btn-default active ]">
+                      Back
+                  </label>
+              </div>
+          </div>
+  </div>
+
+</div> <!-- closes the container conditional on total_time -->
+
+<div ng-if="!authentication.user._id">
+  <div class="col-xs-6  col-xs-offset-3 ">
+          <a ui-sref="home.address" ng-disabled="showC" ng-class="{'btn btn-danger' : showC, 'btn btn-success' : !showC}">
+          Next Step <span class="glyphicon glyphicon-circle-arrow-right"></span>
+          </a>
+  </div>
+</div>
+<div ng-if="authentication.user._id"
+<div class="col-xs-6  col-xs-offset-3">
+          <button ui-sref="success" ng-disabled="showC" ng-class="{'btn btn-danger' : showC, 'btn btn-success' : !showC}">
+          Finish Now
+          </button>
+  </div>
+</div>
+</div>

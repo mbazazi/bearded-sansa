@@ -1,0 +1,449 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,100italic,300italic,400italic|Pacifico);
+
+
+
+
+body {
+  padding-bottom: 20px; }
+
+em {
+  font-style: normal;
+  text-decoration: none; }
+
+
+.alphabet {
+  cursor: pointer;
+  font-size: 22px;
+  text-align: center; }
+  .alphabet li {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px; }
+    .alphabet li:hover {
+      color: #1d7cf4; }
+
+.genres {
+  cursor: pointer; }
+  .genres li {
+    margin-right: 5px; }
+    .genres li:active {
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25); }
+
+.home {
+  background-image: url("../img/mess.png"); }
+
+.jumbotron {
+  
+  background-repeat: none; }
+
+.media-object {
+  max-width: 200px;
+  margin-bottom: 10px; }
+
+.episode {
+  border-left: 5px solid #111;
+  padding-left: 10px; }
+
+.alert {
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3);
+  margin: 5px; }
+
+.alert.top-right {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  margin: 20px;
+  z-index: 1050;
+  outline: none; }
+  .alert.top-right .close {
+    padding-left: 10px; }
+
+.btn {
+  border-radius: 2px; }
+
+.center-form {
+  width: 500px;
+  margin: 0% auto;
+  margin-top: 0%; }
+  .center-form input {
+    border-radius: 0; }
+
+.search {
+  color: #4f4f4f;
+  font-weight: 300;
+  font-size: 1.5em;
+  padding: 7px;
+  margin-top: -10px;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  -webkit-appearance: none; }
+  .search:focus {
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease; }
+
+.panel {
+  border-color: #cfd9D7;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1); }
+
+.panel-default > .panel-heading {
+  color: #444;
+  border-color: #cfd9db;
+  font-weight: bold;
+  font-size: 85%;
+  text-transform: uppercase;
+  background-color: #f6f6f6; }
+
+.label, .genres li {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 3px;
+  font-size: 12px;
+  transition: 0.1s all;
+  -webkit-font-smoothing: antialiased; }
+
+.from-top{
+  top: 30px;
+}
+
+.label-default, .genres li {
+  background-color: #e4e7ec;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+  color: #90939a; }
+  .label-default:hover, .genres li:hover {
+    background-color: #90939a;
+    color: #f4f6f8;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2); }
+
+.navbar {
+  box-shadow: 0 3px 2px -3px rgba(0, 0, 0, 0.1);
+    background-color: #3ca2e0;
+   
+   }
+
+.navbar-header {
+  float: left;
+  padding-left: 15px; }
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+  font-size: 25pt;
+  margin-left: -15px; 
+ }
+
+  .navbar-brand a {
+    color: #FFF; }
+
+.navbar-brand-text{
+  color: #ffcc66;;
+}
+
+.navbar-brand-text:hover{
+  color: #fff;;
+}
+
+
+.navbar-nav {
+  float: left;
+  margin: 0; }
+  .navbar-nav > li {
+    float: left; }
+    .navbar-nav > li > a {
+      padding: 15px;
+      color: black; }
+
+.content{
+  /*background: #30426a;*/
+  background: #3ca2e0;
+}
+input.ng-invalid.ng-dirty.ng-touched {
+  border: 1px solid red; }
+
+.angular-google-map-container {
+  height: 400px; }
+
+/* style.css */
+/* BASIC STYLINGS
+============================================================================= */
+/* form styling */
+#form-container {
+  background: #FFF;
+  margin-bottom: 20px;
+  border-radius: 5px; }
+
+#form-container .page-header {
+  margin: 0;
+  padding: 30px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+/* numbered buttons */
+#status-buttons a, li {
+  color: black;
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 10px; }
+
+#status-buttons li {
+  color: #fff;
+  font-size: 12px;
+  margin-right: 10px; }
+
+#status-buttons a:hover {
+  text-decoration: none; }
+
+/* we will style the span as the circled number */
+#status-buttons span {
+  background: black;
+  display: block;
+  height: 30px;
+  margin: 0 auto 10px;
+  padding-top: 5px;
+  width: 30px;
+  border-radius: 50%; }
+
+/* active buttons turn light green-blue*/
+#status-buttons a.active span {
+  background: white;
+  color: black;
+  border: 1px; }
+
+
+/* for the admin page*/
+.jumbotron .pull-right {
+  margin-bottom: 15px; }
+
+.admin {
+  margin-top: 100px; }
+
+.gone {
+  visibility: none;
+}
+/* style.css */
+/* ANIMATION STYLINGS
+============================================================================= */
+#signup-form {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  padding: 30px; }
+
+#form-views {
+  width: auto; }
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  -webkit-transition: 0.5s all ease; }
+
+/* enter animation */
+#form-views.ng-enter {
+  -webkit-animation: slideInRight 0.5s both ease;
+  -moz-animation: slideInRight 0.5s both ease;
+  animation: slideInRight 0.5s both ease; }
+
+/* leave animation */
+#form-views.ng-leave {
+  -webkit-animation: slideOutLeft 0.5s both ease;
+  -moz-animation: slideOutLeft 0.5s both ease;
+  animation: slideOutLeft 0.5s both ease; }
+
+#showPassword.ng-enter{
+  -webkit-animation: slideInRight 0.5s both ease;
+  -moz-animation: slideInRight 0.5s both ease;
+  animation: slideInRight 0.5s both ease; 
+}
+
+.show_on_complete.ng-hide-remove, #date_choice.ng-hide-add {
+  -webkit-animation: moveFromTopFade 0.5s both ease;
+  -moz-animation: slideInRight 0.5s both ease;
+  animation: moveFromTopFade 0.5s both ease; }
+
+.show_on_complete.ng-hide-remove {
+  -webkit-animation: slideInRight 0.5s both ease;
+  -moz-animation: slideInRight 0.5s both ease;
+  animation: slideInRight 0.5s both ease; }
+
+#finishing p {
+  font-size: 12pt; }
+
+
+/*Styles for the form-goups on the date page
+*/
+
+.form-group input[type="checkbox"] {
+    display: none;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span {
+    width: 20px;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.form-group input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;   
+}
+
+.form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;   
+}
+
+/*Styles for the form-goups on the date page ENDS
+*/
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+  to {
+    transform: translateX(-200%); } }
+@-moz-keyframes slideOutLeft {
+  to {
+    -moz-transform: translateX(-200%); } }
+@-webkit-keyframes slideOutLeft {
+  to {
+    -webkit-transform: translateX(-200%); } }
+/* slide in from the right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(200%); }
+  to {
+    transform: translateX(0); } }
+@-moz-keyframes slideInRight {
+  from {
+    -moz-transform: translateX(200%); }
+  to {
+    -moz-transform: translateX(0); } }
+@-webkit-keyframes slideInRight {
+  from {
+    -webkit-transform: translateX(200%); }
+  to {
+    -webkit-transform: translateX(0); } }
+@-webkit-keyframes moveToTop {
+  to {
+    -webkit-transform: translateY(-100%); } }
+@keyframes moveToTop {
+  to {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%); } }
+@-webkit-keyframes moveFromTop {
+  from {
+    -webkit-transform: translateY(-100%); } }
+@keyframes moveFromTop {
+  from {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%); } }
+@-webkit-keyframes moveToBottom {
+  to {
+    -webkit-transform: translateY(100%); } }
+@keyframes moveToBottom {
+  to {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%); } }
+@-webkit-keyframes moveFromBottom {
+  from {
+    -webkit-transform: translateY(100%); } }
+@keyframes moveFromBottom {
+  from {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%); } }
+/* fade */
+@-webkit-keyframes fade {
+  to {
+    opacity: 0.3; } }
+@keyframes fade {
+  to {
+    opacity: 0.3; } }
+/* move from / to and fade */
+@-webkit-keyframes moveToLeftFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateX(-100%); } }
+@keyframes moveToLeftFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%); } }
+@-webkit-keyframes moveFromLeftFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateX(-100%); } }
+@keyframes moveFromLeftFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%); } }
+@-webkit-keyframes moveToRightFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateX(100%); } }
+@keyframes moveToRightFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%); } }
+@-webkit-keyframes moveFromRightFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateX(100%); } }
+@keyframes moveFromRightFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%); } }
+@-webkit-keyframes moveToTopFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateY(-100%); } }
+@keyframes moveToTopFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%); } }
+@-webkit-keyframes moveFromTopFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateY(-100%); } }
+@keyframes moveFromTopFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%); } }
+@-webkit-keyframes moveToBottomFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateY(100%); } }
+@keyframes moveToBottomFade {
+  to {
+    opacity: 0.3;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%); } }
+@-webkit-keyframes moveFromBottomFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateY(100%); } }
+@keyframes moveFromBottomFade {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%); } }
+
+
+/*# sourceMappingURL=style.css.map */

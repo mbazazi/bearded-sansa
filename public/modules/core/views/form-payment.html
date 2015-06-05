@@ -1,0 +1,33 @@
+<!-- form-payment.html -->
+
+  <form name="payment_form" action="payment.getToken()">
+    <div class="form-group" ng-class="{ 'has-error' : error.message }">
+    <label for="card_number">Card Number</label>
+      <input type="text" name="card_number" class="form-control" size="20" data-stripe="number" required/>
+    </div>
+
+  <div class="form-row" ng-class="{ 'has-error' : error.message }">
+    <label for="CVC"> CVC</label>
+      
+      <input type="text" class="form-control" size="4" data-stripe="cvc"/>
+  </div>
+
+  <div class="form-row" ng-class="{ 'has-error' : error.message }">
+    <label for="exp_month"> Expiration (Month)</label>
+      <input type="text" class="form-control" size="2" data-stripe="exp-month" />
+ <label for="exp_month"> Expiration (Year)</label>
+     <input type="text" class="form-control" size="4" data-stripe="exp-year"/>
+  </div>
+        <div class="has-error"> <p ng-show="error.message" class="help-block">{{error.message}}</p></div>
+
+
+<div class="text-center">
+    <span class="glyphicon glyphicon-heart"></span>
+    <h3>Thanks For Your Money!</h3>
+
+    <button type="submit"  class="btn btn-primary">Submit</button>
+  <div >Token Payment details: {{payment}}</div>
+      <br>
+ </form>   
+
+</div>

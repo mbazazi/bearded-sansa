@@ -1,0 +1,47 @@
+<div class="row" data-ng-controller="AdminsController">
+  <div class="col-md-12 col-sm-10">
+    <rd-widget>
+      <rd-widget-header icon="fa-tasks" title="Users">
+      <button class="btn btn-sm btn-success" ui-sref="adduser">Create User</button>
+      </rd-widget-header>
+      <rd-widget-body classes="medium no-padding">
+        <div class="table-responsive">
+            <table class="table table-border table-striped">
+                 <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Date Added</th>
+                  <th>Role</th>
+                  <th>View</th>
+               </tr>
+                <tr dir-paginate="user in users | filter:query | orderBy: orderProp | itemsPerPage : items">
+                <td data-ng-bind="user.displayName"><a data-ng-href="/user/{{user._id}}"></a></td>
+                <td data-ng-bind="user.email"></td>
+                <td>{{user.created | date:'mediumDate'}}</td>
+                 <td>{{user.roles[0] }}</td>
+              <!--   <td><button class="btn btn-warning" ng-click="removeUser(user)">Delete</button></td> -->
+                <td><button class="btn btn-danger" ui-sref="admin.edituser({id: user._id})">View</button></td>
+                      </tr>
+                      
+                      </tr>
+                    </table>
+                     <dir-pagination-controls></dir-pagination-controls>
+
+        </div>      
+      </rd-widget-body>
+      <rd-widget-footer>
+        <ul class="pagination pagination-sm pull-right">
+          <li><a href="#">&laquo;</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">&raquo;</a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </rd-widget-footer>
+    </rd-widget>
+  </div>
+  
+</div>

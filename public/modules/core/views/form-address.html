@@ -1,0 +1,65 @@
+<!-- form-interests.html -->
+
+<!-- <div class="ng-invalid" ng-show="myform.name.$error.required && myform.$dirty">
+<p> <i class="icon icon-warning-sign"></i>Please enter your name</p></div>
+-->
+
+<!-- <div class="form-group" ng-class="{ 'has-error' : myform.name.$invalid && !myform.$pristine }">
+    <label for="name">Name*</label>
+    <input type="text" class="form-control" name="name" ng-model="formData.name" ng-required="true">
+    <p ng-show="myform.name.$invalid && !myform.name.$pristine" class="help-block">You must enter a name</p>
+</div> -->
+<h1>Client Details</h1>
+<div ng-if="!authentication.user._id">
+<div>
+    <Strong> Already a user?</Strong> - <small><a ui-sref="signin">Sign In</a></small>
+</div></br>
+
+<div  ng-if="!user_hadNoAccont" class='text-center has-success'><strong>Looks like you've already registered with us - enter your password to finish your booking.</strong>
+</div>
+
+
+<div class="form-group" ng-class="{ 'has-error' : myform.email.$invalid && !myform.$pristine }">
+    <input type="email" class="form-control input-underline " name="email" ng-model="formData.email" required ng-change="emailChanged(formData)" placeholder="*Email">
+    <p ng-show="myform.email.$invalid && !myform.email.$pristine" class="help-block">You must enter a valid email address</p>
+</div>
+<div>
+        <div class="form-group" id="showPassword">
+            <input type="password" id="password" name="password" class="form-control input-underline" data-ng-model="formData.password" placeholder="*Password" required>
+        </div>
+    
+</div>     
+<div ng-if="user_hadNoAccont" class="form-group" ng-class="{ 'has-error' : myform.address.$invalid && !myform.address.$pristine || myform.city.$invalid && !myform.$pristine ||  myform.$invalid && !myform.$pristine}" >
+
+    <input type="text" class="form-control input-underline" name="address" ng-model="formData.address_1" placeholder="Address*"required>
+    <input type="text" class="form-control input-underline" name="city" ng-model="formData.city" placeholder="City e.g. Toronto*" required>
+    <input type="text" class="form-control input-underline" name="postcode" ng-model="formData.postcode" placeholder="Postal Code*" required>
+    <p ng-show="myform.address.$invalid && !myform.address.$pristine" class="help-block">You must enter a full valid address</p>
+    <p ng-show="myform.city.$error.required && !myform.city.$pristine" class="help-block">You must enter a full city for the address</p>
+    <p ng-show="myform.postcode.$error.required && !myform.postcode.$pristine" class="help-block">You must enter a full postcode </p>
+</div>
+
+<div ng-if="user_hadNoAccont" class="form-group" ng-class="{ 'has-error' : myform.phone.$invalid && !myform.$pristine }">
+    
+   <input type="string" class="form-control input-underline" name="phone" ng-model="formData.phone" placeholder="Phone number e.g. (416) - 222 5555" ng-minlength="10" mg-maxlength="10" required>
+   <p ng-show="myform.phone.$invalid && !myform.phone.$pristine" class="help-block">You must enter a 10 digit phone number</p>
+</div>
+<div ng-if="myform.$invalid">This for is INVALID</div>
+    <div class="col-xs-6 col-xs-offset-3">
+
+        <button ng-disabled="myform.$invalid"  ng-class="{'btn btn-danger' : myform.$invalid, 'btn btn-success' : myform.$valid}">
+        Finish your booking <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </button>
+
+    </div>
+</div>
+</div>
+
+
+<div class="form-group row" ng-controller='AppointmentsController'>
+
+<pre>Authentication User: {{authentication.user_exists}}</pre>
+<pre>Authentication Error: {{error}}</pre>
+<pre>The myAppointment Object: {{myAppointment}}</pre>
+<pre>The Testing Object: {{testing}}</pre>
+</div>

@@ -1,0 +1,39 @@
+{
+  "name": "mymeanapp",
+  "version": "0.0.1",
+  "description": "Hands Website",
+  "dependencies": {
+    "bootstrap": "~3",
+    "angular": "~1.4",
+    "angular-resource": "latest",
+    "angular-mocks": "latest",
+    "angular-cookies": "latest",
+    "angular-animate": "latest",
+    "angular-touch": "latest",
+    "angular-sanitize": "latest",
+    "angular-bootstrap": "~0.11.3",
+    "angular-ui-utils": "~0.1.1",
+    "angular-ui-router": "~0.2.11",
+    "angular-ui-bootstrap-datetimepicker": "~0.11.2",
+    "angular-strap": "~2.2.1",
+    "angular-chart.js": "~0.7.1",
+    "angular-bootstrap-simple-chat": "~0.0.2"
+  },
+  "authors": [
+    "Mo <mbazazi@hotmail.com>"
+  ],
+  "main": "/public/modules/core/css/style.css",
+  "keywords": [
+    "health",
+    "massage"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ]
+}
