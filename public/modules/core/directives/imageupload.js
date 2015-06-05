@@ -49,7 +49,7 @@ angular.module('core').directive('image',
             canvas.height = height;
 
             //draw image on canvas
-            var ctx = canvas.getContext("2d");
+            var ctx = canvas.getContext('2d');
             ctx.drawImage(origImage, 0, 0, width, height);
 
             // get the data from canvas as 70% jpg (or specified type).
@@ -91,6 +91,11 @@ angular.module('core').directive('image',
                         imageResult.resized = {
                             dataURL: dataURL,
                             type: dataURL.match(/:(.+\/.+);/)[1],
+                            name: imageResult.file.name,
+                            size: imageResult.file.size,
+                            webkitRelativePath: imageResult.file.webkitRelativePath,
+                            lastModified: imageResult.file.lastmodified,
+                            lastModifiedDate: imageResult.file.lastModifiedDate
                         };
                         callback(imageResult);
                     });

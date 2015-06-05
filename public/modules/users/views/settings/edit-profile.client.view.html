@@ -1,63 +1,46 @@
-<section class="row view-container" data-ng-controller="SettingsController">
-<div class="col-sm-5">
-	<h3 class="text-center">Edit your profile</h3>
-		
-	<div>
-		
-   <!-- <h2>Single image with resizing</h2>
-        <div>
-            <label for="inputImage2">Image 2</label>
-            
-            <input id="inputImage2" 
-                type="file" 
-                accept="image/*" 
-                image="image2" 
-                resize-max-height="300"
-                resize-max-width="250"
-                resize-quality="0.7" />
-            
-            <p>Original</p>
-            <img ng-show="image2" ng-src="{{image2.url}}" type="{{image2.file.type}}"/>
-            <p>Resized</p>
-            <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
-            <button type="submit" ng-click="single(image2.resized)" disabled>Add</button>
-        </div> -->
+<section class="view-container container" data-ng-controller="SettingsController">
+<div class="row">
+	<div class="col-sm-4"><h3 class="text-center">Edit your profile</h3></div>
+</div>
+<div class="row" style="background: red;">
+	<div style="background: blue;" class="col-sm-4">
+		<div data-ng-controller="ImgCtrl" >
+	<toast></toast>
 
-        <h4>Your Profile Pic</h4>
-        <div>
-            <label for="inputImage2">Your Profile</label>
-            <img ng-src='{{imageSrc}}'>
-            <input class="btn btn-success"
-            	 id="inputImage2" 
+		<h4>Profile Picture</h4>
+  
+            
+            <input  id="inputImage2" 
                 type="file" 
                 accept="image/*" 
                 image="image2" 
-                ng-model="files"
                 resize-max-height="300"
                 resize-max-width="250"
                 resize-quality="0.7" />
-           
-            <p>Resized</p>
-            <img class="img img-responsive img-circle" ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
-            <button ng-click="single(image2.resized)">Add</button>
+            
+            
+            <div><img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/></div>
+         <div><br><br>
+            <button class="btn btn-success" type="submit" ng-click="single(image2)" >Upload</button>
         </div>
         <hr />
+		<img ng-show="uploadedImgSrc" ng-src="{{uploadedImgSrc}}" style="max-width:50px; max-height:50px;">
+		</div>
+
+	</div>
+	<div style="background: green;" class="col-sm-4">Column 2</div>
+	<div style="background: yellow;" class="col-sm-4">Column 3</div>
+</div>
 
 
 
-<!-- <div>
-    watching model:
-    <div class="btn btn-success" ngf-select ng-model="files">Upload using model $watch</div>
-    Drop File:
-    <div ngf-drop ng-model="files" class="drop-box" 
-        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-        ngf-accept="'image/*,application/pdf'">Drop Images or PDFs files here</div>
-    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
-    Image thumbnail: <img ngf-src="files[0]" ngf-default-src="'./profile_pics/thumb.jpg'" ngf-accept="'image/*'" >
-    Audio preview: <audio controls ngf-src="files[0]" ngf-accept="'audio/*'"></audio>
-    Video preview: <video controls ngf-src="files[0]" ngf-accept="'video/*'"></video>
-</div> -->
+
+
+
+
+
+
 			<form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
 				<fieldset>
 
@@ -97,7 +80,7 @@
 			</form>
 		</div>
 </div>
-<div class="col-sm-5 col-sm-offset-1" ng-if="card">
+<div class="col-sm-6 col-sm-offset-1" ng-if="card">
 
 <h4>Payment details</h4>
 <div class="form-group">

@@ -8,12 +8,10 @@ var _ = require('lodash'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	User = mongoose.model('User');
-	var formidable = require('formidable');
 	var path = require('path');
 	var fs = require('fs');
 	var logger = require('morgan');
 	var multer = require('multer');
-
 /**
  * Update user details
  */
@@ -73,40 +71,51 @@ exports.list = function(req, res, next) {
 };
 
 exports.uploadAvatar = function(req, res){
+	console.log(req.body);
 	console.log(req.files);
+/*
 	/*console.log(req);*/
-	var image =  req.files.image;
-/*    var newImageLocation = path.join(__dirname, 'public/images', image.name);
-*/   /* 
+var image =  req.files.image;
+
+//getting the variables we need   
+var dataURL = req.body.dataURL;
+var base64 = dataURL.replace(/^data:image\/png;base64,/, '');
+/*var filename = req.files.image.name;
+var lastname = filename.replace(' ','_');
+var name = lastname.split('.');
+
+var date = new Date();
+var time = date.getTime();
+var imageDest = name[0]+time+'.'+name[name.length-1];*/
+/*console.log(imageDest);
+*//*
+//creates the final file name on our system
+*/
+var dirname = path.resolve('.');
+console.log(dirname);
+  //creates an new image file on our own server 
+    fs.writeFile(dirname +'/public/img/profile_pics/'+image.name, base64, 'base64', function(err) {
+            if(err) res.sendStatus(404);
+            console.log(err);
+             res.json(200, { 
+                src: dirname +'/public/img/profile_pics/'+image.name, 
+                msg: 'Pic Updated Successfully'
+            });
+	});
+
+
+
+  /*  var newImageLocation = path.join(__dirname, 'public/images', image.name);
+    
     fs.readFile(image.path, function(err, data) {
         fs.writeFile(newImageLocation, data, function(err) {
             res.json(200, { 
-                src: 'images/' + image.name,
+                src: '/public/modules/core/img/public_profiles/' + image.name,
                 size: image.size
             });
         });
     });*/
 
-/*	console.log(req);
-*/	res.send(200);
-	/*var form = new formidable.IncomingForm();
-	console.log(form);
-    form.parse(req, function (err, fields, files) {
-        var file = files.file;
-        var username = fields.email;
-        var tempPath = file.path;
-        var targetPath = path.resolve('./public/users/img/profile_pics/' + username + '/' + file.name);
-        fs.rename(tempPath, targetPath, function (err) {
-            if (err) {
-                throw err;
-            }
-            logger.debug(file.name + ' upload complete for user: ' + username);
-            return res.json({path: './public/users/img/profile_pics/' + username + '/' + file.name});
-        });
-    });*/
-/*console.log(req.files);
-res.send(404);*/
-/**/
 
 };
 

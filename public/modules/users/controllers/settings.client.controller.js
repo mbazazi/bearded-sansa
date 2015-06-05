@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$rootScope', '$http', '$location', 'Users', 'Authentication', 'Payment', '$cookieStore', '$state', 'geocoder', 'Upload', 
-	function($scope, $rootScope, $http,  $location, Users, Authentication, Payment, $cookieStore, $state, geocoder, Upload) {
+angular.module('users').controller('SettingsController', ['$scope', '$rootScope', '$http', '$location', 'Users', 'Authentication', 'Payment', '$cookieStore', '$state', 'geocoder', 'Upload', 'ngToast',  
+	function($scope, $rootScope, $http,  $location, Users, Authentication, Payment, $cookieStore, $state, geocoder, Upload, ngToast) {
 		$scope.user = Authentication.user;
 		if ($scope.user.token){
 			$scope.card = $scope.user.token.card;
@@ -114,26 +114,34 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 				}
 			}, true);
 
-			$scope.imageSrc = '/img/flat-avatar.png';
-			$scope.single = function(image) {
+                	//For the image upload
+ 				$scope.single = function(image) {
+                    console.log(image);
                     var formData = new FormData();
-                    formData.append('image', image, image.name);
+                    formData.append('image', image.file, image.file.name);
+                    formData.append('dataURL', image.resized.dataURL);
+                    formData.append('img_type', image.resized.type);
 
-                    $http.post('/auth/uploadAvatar', formData, {
-                        headers: { 'Content-Type': false },
+                    $http.post('auth/uploadAvatar', formData, {
+                        headers: { 'Content-Type': undefined},
                         transformRequest: angular.identity
                     }).success(function(result) {
-                        $scope.uploadedImgSrc = result.src;
+                    	console.log(result);
+                    	$scope.user.profile_pic = result.src;
                         $scope.sizeInBytes = result.size;
-                    }).error(function(res, status){
-                    	console.log(res);
-                    	console.log(status);
+
+                        // create a toast with settings:
+						ngToast.create({
+						  className: 'success',
+						  content: result.msg
+						});
                     });
-                };
+    			};
+
+
                   $scope.$watch('files', function () {
-/*		        $scope.upload($scope.files);
-*/		        console.log($scope.files);
-		    });
+		       	 console.log($scope.files);
+		   		 });
 		/*
 					//For the image uplaod
 		 
@@ -155,6 +163,5 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		            }
 		        }
 		    };*/
-
 	}
 ]);

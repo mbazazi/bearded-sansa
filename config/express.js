@@ -22,9 +22,8 @@ var fs = require('fs'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
 	path = require('path'),
-	stripe = require('stripe')('sk_test_Ti4SYMYKTgO1Or9j6ITUCG1H'), 
-    multer  = require('multer');
-
+	stripe = require('stripe')('sk_test_Ti4SYMYKTgO1Or9j6ITUCG1H'),
+	multer = require('multer');
 
 
 module.exports = function(db) {
@@ -126,11 +125,11 @@ module.exports = function(db) {
 	// Middleware in Node to "intercept" non JSON requests
 	// Place this after express.static middleware but before your route definitions.
 	app.use(function(req, res, next) {
-		console.log('This is the req header in the middleware'+req.headers.accept);
+	
     // keep in mind this applies to all requests, so 404s will need to be handled by your angular app since any url will serve up the index page
     if(req.header('Accept') !== 'application/json') {
         console.log('serving the index page');
-        console.log(req.header);
+        console.log(req.headers);
         req.url = '/'; // force the url to serve the index route.
 	    }
 	 console.log(req.header);

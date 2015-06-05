@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'mymeanapp';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'ui.bootstrap.datetimepicker', 'stripe', 'angularUtils.directives.dirPagination', 'frapontillo.bootstrap-switch', 'uiGmapgoogle-maps', 'ngFileUpload'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'ui.bootstrap.datetimepicker', 'stripe', 'angularUtils.directives.dirPagination', 'frapontillo.bootstrap-switch', 'uiGmapgoogle-maps', 'ngFileUpload', 'ngToast'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
