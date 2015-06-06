@@ -16,10 +16,9 @@ var _ = require('lodash'),
  * Update user details
  */
 exports.update = function(req, res) {
-	console.log(req);
+
 	// Init Variables
 	var user = req.user;
-	console.log();
 	var message = null;
 
 	// For security measurement we remove the roles from the req.body object
@@ -41,7 +40,6 @@ exports.update = function(req, res) {
 					if (err) {
 						res.status(400).send(err);
 					} else {
-						console.log(user);
 						res.json(user);
 					}
 				});
