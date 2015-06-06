@@ -76,10 +76,10 @@ exports.uploadAvatar = function(req, res){
 /*
 	/*console.log(req);*/
 var image =  req.files.image;
-
+res.json({msg: 'OK'});
 //getting the variables we need   
-var dataURL = req.body.dataURL;
-var base64 = dataURL.replace(/^data:image\/png;base64,/, '');
+/*var dataURL = req.body.dataURL;
+var base64 = dataURL.replace(/^data:image\/png;base64,/, '');*/
 /*var filename = req.files.image.name;
 var lastname = filename.replace(' ','_');
 var name = lastname.split('.');
@@ -91,7 +91,7 @@ var imageDest = name[0]+time+'.'+name[name.length-1];*/
 *//*
 //creates the final file name on our system
 */
-var dirname = path.resolve('.');
+/*var dirname = path.resolve('.');
 console.log(dirname);
   //creates an new image file on our own server 
     fs.writeFile(dirname +'/public/img/profile_pics/'+image.name, base64, 'base64', function(err) {
@@ -102,7 +102,7 @@ console.log(dirname);
                 msg: 'Pic Updated Successfully'
             });
 	});
-
+*/
 
 
   /*  var newImageLocation = path.join(__dirname, 'public/images', image.name);

@@ -87,6 +87,10 @@ var UserSchema = new Schema({
   		type: Schema.ObjectId, 
   		ref: 'Appointments'
   	}, 
+  	profile_pic: { 
+  		type: String,
+  		default: '/public/img/flat-avatar.png'
+  	},
   	address: {
   		main_address: { 
 	  		street_1: {type: String}, 

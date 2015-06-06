@@ -168,6 +168,12 @@ input.ng-invalid.ng-dirty.ng-touched {
 .angular-google-map-container {
   height: 400px; }
 
+.preview img{
+  max-height: 150px;
+  max-width:300px;
+
+}
+
 /* style.css */
 /* BASIC STYLINGS
 ============================================================================= */

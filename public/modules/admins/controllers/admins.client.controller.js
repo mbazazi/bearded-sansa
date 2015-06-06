@@ -31,7 +31,6 @@ angular.module('admins').controller('AdminsController', ['$scope', '$stateParams
 			console.log($scope.isClient);
 		//Functions related to Appointments
 		$scope.appointmentsGetter = function(app_query){
-console.log(app_query);
 			Appointments.query(app_query).$promise.then(function(res){
 				$scope.appointments = res;
 				console.log(res);				

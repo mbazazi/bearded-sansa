@@ -3,6 +3,8 @@
 angular.module('users').controller('SettingsController', ['$scope', '$rootScope', '$http', '$location', 'Users', 'Authentication', 'Payment', '$cookieStore', '$state', 'geocoder', 'Upload', 'ngToast',  
 	function($scope, $rootScope, $http,  $location, Users, Authentication, Payment, $cookieStore, $state, geocoder, Upload, ngToast) {
 		$scope.user = Authentication.user;
+		$scope.def_av = '../../../../img/flat-avatar.png';
+		console.log($scope.def_av);
 		if ($scope.user.token){
 			$scope.card = $scope.user.token.card;
 		}
@@ -138,20 +140,22 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
                     });
     			};
 
-
+/*
                   $scope.$watch('files', function () {
 		       	 console.log($scope.files);
+		       	  $scope.upload($scope.files);
 		   		 });
-		/*
+		
 					//For the image uplaod
-		 
+		 console.log(Upload);
 
 		    $scope.upload = function (files) {
+		    	console.log(files);
 		        if (files && files.length) {
 		            for (var i = 0; i < files.length; i++) {
 		                var file = files[i];
 		                Upload.upload({
-		                    url: 'upload/url',
+		                    url: 'auth/uploadAvatar',
 		                    fields: {'username': $scope.username},
 		                    file: file
 		                }).progress(function (evt) {
