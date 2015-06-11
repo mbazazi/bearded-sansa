@@ -93,9 +93,8 @@ exports.list = function(req, res) {
 	if (req.query.cancelled === 'false'){
 		req.query.cancelled = false;
 	}
-console.log(req.query);
 	Appointment.find(req.query)
-	.populate('client', 'displayName')
+	.populate('client')
 	.populate('staff_id')
 	.sort('-created')
 	.exec(function(err, appointments) {
@@ -105,10 +104,7 @@ console.log(req.query);
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			console.log(appointments);
-			/*appointments = appointments.filter(function(appointment){
-				console.log('&&&&&&&&&&&&'+appointment.staff_id[0]._id+'*****************');
-			});*/
+
 			res.jsonp(appointments);
 		}
 	});

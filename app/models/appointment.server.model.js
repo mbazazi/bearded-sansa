@@ -10,7 +10,9 @@ var mongoose = require('mongoose'),
  * Appointment Schema
  */
 var AppointmentSchema = new Schema({
-	appointment_date: {type: Date},
+	stripeChargeObj: {},
+	refundObj: [{}],
+	appointment_date: {type: Date, required: 'You must select a date'},
 	created: {
 		type: Date,
 		default: Date.now
@@ -23,6 +25,10 @@ var AppointmentSchema = new Schema({
 	cost:{
 		type: Number
 	}, 
+	confirm_appointment:{
+		type: Boolean, 
+		default: false
+	},
 	jobDone:{
 		type: Boolean, 
 		default: false

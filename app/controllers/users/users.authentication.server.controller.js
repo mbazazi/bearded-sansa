@@ -55,11 +55,8 @@ exports.signup = function(req, res) {
  * Signin after passport authentication
  */
 exports.signin = function(req, res, next) {
-	console.log(req.body);
 	passport.authenticate('local', function(err, user, info) {
-		console.log(user);
 		if (err || !user) {
-		
 			res.status(400).send(info);
 		} else {
 			// Remove sensitive data before login

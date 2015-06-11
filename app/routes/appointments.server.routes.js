@@ -12,7 +12,7 @@ module.exports = function(app) {
 	app.route('/appointments/:appointmentId')
 		.get(appointments.read)
 		.put(users.requiresLogin, appointments.update)
-		.post(users.requiresLogin, appointments.cancel)
+		.post(users.requiresLogin, appointments.hasAuthorization, appointments.cancel)
 		.delete(users.requiresLogin, appointments.hasAuthorization, appointments.delete);
 
 	// Finish by binding the Appointment middleware

@@ -18,6 +18,7 @@ module.exports = function() {
 				email: email
 			}, function(err, user) {
 				if (err) {
+					console.log(err);
 					return done(err);
 				}
 				if (!user) {

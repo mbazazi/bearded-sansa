@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('rdash').controller('MasterCtrl', ['$scope', '$cookieStore', '$state', '$rootScope', 
-    function($scope, $cookieStore, $stateParams, $rootScope){
+angular.module('rdash').controller('MasterCtrl', ['$scope', '$cookieStore', '$state', '$rootScope', 'Authentication', 
+    function($scope, $cookieStore, $stateParams, $rootScope, Authentication){
   /**
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
-   
+   $scope.authentication = Authentication;
 
     $scope.getWidth = function() {
         return window.innerWidth;

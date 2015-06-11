@@ -1,38 +1,34 @@
 <!-- payment.html -->
-<section class="row" ng-init="save_customer">
-<h3 ng-if="!card">Card Details</h3>
-    <form name="payment_form" stripe:form="save_customer.getStripeToken" novaliate>
+<section class="row view-container" ng-init="save_customer" ng-controller="SettingsController">
+<div class="col-md-10">
+<h3 class="text-center">Card Details</h3>
+  <form name="payment_form" stripe:form="save_customer.getStripeToken" novaliate>
     <div class="form-group" ng-class="{ 'has-error' : error.message }">
-    <label for="card_number">Card Number</label>
-      <input type="text" class="form-control" size="20" data-stripe="number" required/>
+      <label for="card_number">Card Number</label>
+       <input type="text" class="form-control input-underline" size="20" data-stripe="number" required/>
+    </div>
+    <div class="form-row" ng-class="{ 'has-error' : error.message }">
+      <label for="CVC"> CVC</label>
+        <input type="text" class="form-control input-underline" size="4" data-stripe="cvc"/>
     </div>
 
-  <div class="form-row" ng-class="{ 'has-error' : error.message }">
-    <label for="CVC"> CVC</label>
-      
-      <input type="text" class="form-control" size="4" data-stripe="cvc"/>
-  </div>
-
-  <div class="form-row" ng-class="{ 'has-error' : error.message }">
-    <label for="exp_month"> Expiration (Month)</label>
-      <input type="text" class="form-control" size="2" data-stripe="exp-month" />
- <label for="exp_month"> Expiration (Year)</label>
-     <input type="text" class="form-control" size="4" data-stripe="exp-year"/>
-  </div>
-        <div class="has-error"> <p ng-show="save_customer.error.message" ng-hide="save_customer.token"class="help-block">{{save_customer.error.message}}</p></div>
-
-
-<div class="text-center">
-    <span class="glyphicon glyphicon-heart"></span>
-    
-    <button type="submit" class="btn btn-primary">Update Payment Details</button>
-    
-      <br>
-  </div>
-</form>
+    <div class="form-row" ng-class="{ 'has-error' : error.message }">
+      <label for="exp_month"> Expiration (Month)</label>
+        <input type="text" class="form-control input-underline" size="2" data-stripe="exp-month" />
+      <label for="exp_month"> Expiration (Year)</label>
+       <input type="text" class="form-control input-underline" size="4" data-stripe="exp-year"/>
+    </div>
+    <div class="has-error"> <p ng-show="save_customer.error.message" ng-hide="save_customer.token"class="help-block">{{save_customer.error.message}}</p>
+    </div>
+    <div class="text-center">
+      <span class="glyphicon glyphicon-heart"></span>
+      <button type="submit" class="btn btn-primary">Update Payment Details</button>
+        <br>
+    </div>
+  </form>
 
 </div>
-
+</div>
 </section>
 
 

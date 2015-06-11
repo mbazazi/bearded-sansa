@@ -22,15 +22,15 @@ describe('Appointment Model Unit Tests:', function() {
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
-			email: 'test@test.com',
-			username: 'username',
+			email: 'username@email.com',
 			password: 'password'
 		});
 
 		user.save(function() { 
 			appointment = new Appointment({
 				name: 'Appointment Name',
-				user: user
+				client: user, 
+				appointment_date: '2015-06-03T13:21:58Z'
 			});
 
 			done();
@@ -45,8 +45,8 @@ describe('Appointment Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without name', function(done) { 
-			appointment.name = '';
+		it('should be able to show an error when try to save without an appointment_date', function(done) { 
+			appointment.appointment_date = '';
 
 			return appointment.save(function(err) {
 				should.exist(err);

@@ -37,7 +37,7 @@ module.exports = function(app) {
 	app.route('/auth/signout').get(users.signout);
 	app.route('/auth/check_username').post(users.check_username);
 	app.route('/auth/createuser').post(users.create_user);
-	app.route('/auth/uploadAvatar').post(users.uploadAvatar);
+	app.route('/auth/uploadAvatar').post(users.uploadAvatar).put(users.update);
 
 	//Removes the User
 	app.route('/auth/remove').post(users.removeUser);

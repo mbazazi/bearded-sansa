@@ -17,9 +17,7 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.css', 
 				'public/lib/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
 				'public/lib/ngtoast/dist/ngToast.min.css', 
-				'public/lib/ngtoast/dist/ngToast-animations.min.css'
-
-				/*'public/lib/angular-ui-bootstrap-datetimepicker/datetimepicker.css',
+				'public/lib/ngtoast/dist/ngToast-animations.min.css'				/*
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/modules/core/css/mystyle.css',*/
 			],
@@ -45,9 +43,6 @@ module.exports = {
 				'public/lib/angular-bootstrap-switch/src/directives/bsSwitch.js', 
 				'public/lib/lodash/dist/lodash.js', 
 				'public/lib/angular-google-maps/dist/angular-google-maps.js',
-				'public/lib/flow.js/dist/flow.min.js', 
-				'public/lib/ng-flow/dist/ng-flow.min.js',
-				'public/lib/flow.js/dist/flow.min.js', 
 				'public/lib/ng-file-upload-shim/ng-file-upload-shim.min.js',
 				'public/lib/ng-file-upload/ng-file-upload.min.js', 
 				'public/lib/ngtoast/dist/ngToast.min.js'

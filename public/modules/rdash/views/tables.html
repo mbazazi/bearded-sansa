@@ -2,7 +2,11 @@
   <div class="col-md-12 col-sm-10">
     <rd-widget>
       <rd-widget-header icon="fa-tasks" title="Users">
+      <button class="btn btn-sm btn-success"  ng-click="showStaff()">Show Staff</button>
+
       <button class="btn btn-sm btn-success" ui-sref="adduser">Create User</button>
+      <button class="btn btn-sm btn-success" ui-sref="create_appointment">Create Appointment</button>
+
       </rd-widget-header>
       <rd-widget-body classes="medium no-padding">
         <div class="table-responsive">
@@ -20,7 +24,7 @@
                 <td>{{user.created | date:'mediumDate'}}</td>
                  <td>{{user.roles[0] }}</td>
               <!--   <td><button class="btn btn-warning" ng-click="removeUser(user)">Delete</button></td> -->
-                <td><button class="btn btn-danger" ui-sref="admin.edituser({id: user._id})">View</button></td>
+                <td><button class="btn btn-danger" ui-sref="rdash.user({userId: user._id, userRole: user.roles[0]})">View</button></td>
                       </tr>
                       
                       </tr>

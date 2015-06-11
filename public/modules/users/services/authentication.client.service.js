@@ -55,7 +55,7 @@ angular.module('users').factory('Authentication', [ '$http',  '$state', '$locati
 				_this._data.user = response;
 				_this.user = response;
 				console.log(_this._data.user);
-				if (!response.token){
+				if (!response.stripeCustomer){
 					$state.go('profile.payment');
 				} else {
 				// And redirect to the index page

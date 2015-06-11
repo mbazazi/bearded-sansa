@@ -16,7 +16,7 @@ angular.module('appointments').controller('AppointmentsController',
 			$scope.staffList = res;
 		});
 		$scope.formData = {};
-
+		var app_query = {};
 
 		if($scope.myAppointment) {
 			$scope.formData = $scope.myAppointment;
@@ -24,7 +24,16 @@ angular.module('appointments').controller('AppointmentsController',
 			$scope.formData = {};
 		}
 
-
+		if ($stateParams.role === 'staff'){
+			app_query = {
+					staff_id: $stateParams.id
+			}
+				
+		} else {
+			app_query = {
+					client: $stateParams.id
+			}
+		}
 		
 		// Create new Appointment
 		$scope.create = function() {
@@ -80,12 +89,19 @@ angular.module('appointments').controller('AppointmentsController',
 			
 		};
 
+		// Find a list of Appointments
+		$scope.findUserAppointments= function(app_query) {
+			console.log(app_query);
+			$scope.appointments = Appointments.query({app_query});
+		};
+
 		// Find existing Appointment
 		$scope.findOne = function() {
-			$scope.appointment = Appointments.get({ 
+			Appointments.get({ 
 				appointmentId: $stateParams.appointmentId
-			}, function(data){
+			}).$promise.then(function(data){
 				console.log(data);
+				$scope.appointment = data;
 				var address = data.client[0].address.main_address;
 					$scope.map = { 
 						center: { 
@@ -100,10 +116,9 @@ angular.module('appointments').controller('AppointmentsController',
 							longitude: address.lng
 					      },
 					      options: { draggable: true }    
-				    };  
-
-				    console.log($scope.map);
-				    console.log($scope.marker);
+				    }; 
+			}, function (err){
+				$scope.error = err;
 			});
 
 		};

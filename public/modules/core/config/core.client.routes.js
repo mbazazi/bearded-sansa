@@ -35,12 +35,12 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
                 'checkout@home': {templateUrl:'modules/core/views/checkout.html'}
             },
             controller: 'HomeController'
-        }) 
+        })/* 
         // url will be /form/payment
-        .state('home.payment', {
+        .state('payment', {
             url: 'payment',
             templateUrl: 'modules/core/views/form-payment.html'
             
-        });
+        })*/;
 	}
 ]);

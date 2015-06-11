@@ -32,7 +32,7 @@ angular.module('core').directive('image',
             var height = origImage.height;
             var width = origImage.width;
 
-            // calculate the width and height, constraining the proportions
+           /* // calculate the width and height, constraining the proportions
             if (width > height) {
                 if (width > maxWidth) {
                     height = Math.round(height *= maxWidth / width);
@@ -43,14 +43,31 @@ angular.module('core').directive('image',
                     width = Math.round(width *= maxHeight / height);
                     height = maxHeight;
                 }
-            }
-
+            }*/
             canvas.width = width;
             canvas.height = height;
 
+
+            var sourceX = width*0.20;
+            var sourceY = height*0.20;
+            if (width || height > 500){
+                var sourceWidth = width/4;
+                var sourceHeight = height/4;
+            } else {
+            var sourceWidth = width/2;
+            var sourceHeight = height/2;
+            }
+            var destWidth = sourceWidth;
+            var destHeight = sourceHeight;
+            var destX = canvas.width / 2 - destWidth / 2;
+            var destY = canvas.height / 2 - destHeight / 2;
+
+            
+
             //draw image on canvas
             var ctx = canvas.getContext('2d');
-            ctx.drawImage(origImage, 0, 0, width, height);
+             ctx.drawImage(origImage, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+           /* ctx.drawImage(origImage, 0, 0, width, height);*/
 
             // get the data from canvas as 70% jpg (or specified type).
             return canvas.toDataURL(type, quality);

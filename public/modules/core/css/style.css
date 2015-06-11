@@ -2,8 +2,10 @@
 
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,100italic,300italic,400italic|Pacifico);
 
-
-
+@font-face{
+  font-family: FontAwesome;
+  src: url(../fontawesome/fonts/fontawesome-webfont.woff);
+}
 
 body {
   padding-bottom: 20px; }
@@ -12,6 +14,15 @@ em {
   font-style: normal;
   text-decoration: none; }
 
+/*Styles the drop down heading or table
+*/ .sortorder:after {
+  font-family: FontAwesome;
+    content: '\f0d7';
+  }
+  .sortorder.reverse:after {
+  font-family: FontAwesome;
+    content: '\f0d8';
+  }
 
 .alphabet {
   cursor: pointer;

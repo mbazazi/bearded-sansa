@@ -22,5 +22,7 @@ angular.module('appointments').config(['$stateProvider',
 			url: '/appointments/:appointmentId/edit',
 			templateUrl: 'modules/appointments/views/edit-appointment.client.view.html'
 		});
+
+
 	}
 ]);

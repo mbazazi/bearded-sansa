@@ -128,11 +128,9 @@ module.exports = function(db) {
 	
     // keep in mind this applies to all requests, so 404s will need to be handled by your angular app since any url will serve up the index page
     if(req.header('Accept') !== 'application/json') {
-        console.log('serving the index page');
-        console.log(req.headers);
-        req.url = '/'; // force the url to serve the index route.
+/*        console.log('serving the index page');
+*/        req.url = '/'; // force the url to serve the index route.
 	    }
-	 console.log(req.header);
 
 	    next();
 

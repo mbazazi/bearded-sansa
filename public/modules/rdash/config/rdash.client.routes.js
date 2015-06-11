@@ -24,6 +24,14 @@ angular.module('rdash').config(['$stateProvider',
             .state('rdash.tables', {
                 url: '/tables',
                 templateUrl: 'modules/rdash/views/tables.html'
+            })
+            .state('rdash.user', {
+                url: '/:userId/:userRole',
+                templateUrl: 'modules/users/views/settings/user.client.view.html',
+                controller: 'AdminsController'
+            }).
+            state('userAppointment', {
+                url: '/appointments/:userId'
             });
 
 	}

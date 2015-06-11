@@ -4,9 +4,11 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider', 
-	function($locationProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
-
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider', 'ngToastProvider',
+	function($locationProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider, ngToastProvider) {
+ngToastProvider.configure({
+    animation: 'fade' // or 'slide'
+  });
 		 	// use HTML 5
 		Stripe.setPublishableKey('pk_test_7LnUmjmnIwkkWJUvgKlqLtSd');
 		uiGmapGoogleMapApiProvider.configure({

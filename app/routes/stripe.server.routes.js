@@ -11,6 +11,10 @@ module.exports = function(app) {
 		.post(users.requiresLogin, stripe.createCustomer);
 
 	app.route('/stripe/:stripeToken')
-		.get(stripe.read)
-		.post(users.requiresLogin, stripe.createCustomer);
+		.get(stripe.list)
+		.post(users.requiresLogin, stripe.createCharge)
+		.post(users.requiresLogin, stripe.createRefund);
+
+	app.route('/stripe/refund/:chargeID')
+		.post(users.requiresLogin, stripe.createRefund);
 };

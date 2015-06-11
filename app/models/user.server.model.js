@@ -83,14 +83,18 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
-	}, 
+	},  
+  	phone:{
+  		type: Number,
+  		default: null
+  	}, 
 	jobs: { 
   		type: Schema.ObjectId, 
   		ref: 'Appointments'
   	}, 
   	profile_pic: { 
   		type: String,
-  		default: '/public/img/flat-avatar.png'
+  		default: '/img/flat-avatar.png'
   	},
   	address: {
   		main_address: { 
@@ -111,7 +115,7 @@ var UserSchema = new Schema({
 	  		province: {type: String}, 
 	  		postcode: {type: String}
   		}
-  	} 
+  	}
 });
 
 /**

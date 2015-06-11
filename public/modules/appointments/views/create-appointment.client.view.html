@@ -9,7 +9,7 @@
                <div class="form-group">
                     <label class="control-label" for="name">Client Name</label>
                     <div class="controls">
-                       {{app.staff_id[0].name}} 
+                       {{app.client[0].name}} 
                             <select class="form-control" name="client" 
                             ng-options="client._id as client.displayName for client in clientList" 
                             ng-model="formData.client" 

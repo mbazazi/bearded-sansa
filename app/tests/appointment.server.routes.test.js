@@ -20,27 +20,25 @@ describe('Appointment CRUD tests', function() {
 	beforeEach(function(done) {
 		// Create user credentials
 		credentials = {
-			username: 'username',
+			email: 'username@email.com',
 			password: 'password'
 		};
-
-		// Create a new user
+		
 		user = new User({
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
-			email: 'test@test.com',
-			username: credentials.username,
-			password: credentials.password,
+			email: credentials.email,
+			password: credentials.password, 
 			provider: 'local'
 		});
 
-		// Save a user to the test db and create new Appointment
-		user.save(function() {
-			appointment = {
-				name: 'Appointment Name'
-			};
-
+		user.save(function() { 
+			appointment = new Appointment({
+				name: 'Appointment Name',
+				client: user, 
+				appointment_date: '2015-06-03T13:21:58Z'
+			});
 			done();
 		});
 	});

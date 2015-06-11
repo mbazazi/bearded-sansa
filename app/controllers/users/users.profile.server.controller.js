@@ -73,9 +73,25 @@ exports.uploadAvatar = function(req, res){
 	console.log(req.files);
 /*
 	/*console.log(req);*/
-var image =  req.files.image;
-res.json({msg: 'OK'});
-//getting the variables we need   
+var image =  req.files.file;
+var tmp_path = req.files.file.path;
+var dirname = path.resolve('.');
+var target_path = dirname + '/public/img/profile_pics/'+image.originalname;
+ fs.rename(tmp_path, target_path, function(err) {
+        if (err) throw err;
+        // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
+        fs.unlink(tmp_path, function() {
+            if (err) throw err;
+            res.send(200, {
+            	path: target_path, 
+            	size: req.files.file.size,
+            	msg: 'Your Profile Picture was updated succeeded'
+            });  
+        });
+    });
+
+/*res.json({msg: 'OK'});
+*///getting the variables we need   
 /*var dataURL = req.body.dataURL;
 var base64 = dataURL.replace(/^data:image\/png;base64,/, '');*/
 /*var filename = req.files.image.name;
@@ -89,7 +105,7 @@ var imageDest = name[0]+time+'.'+name[name.length-1];*/
 *//*
 //creates the final file name on our system
 */
-/*var dirname = path.resolve('.');
+/*
 console.log(dirname);
   //creates an new image file on our own server 
     fs.writeFile(dirname +'/public/img/profile_pics/'+image.name, base64, 'base64', function(err) {
@@ -160,7 +176,7 @@ User.find({roles: req.query.roles})
 };
 
 exports.getOne = function(req, res, next) {
-
+console.log('THis is the GEt one User &&&&&&&&&'+req);
 	User.findOne({_id: req.params.id}).exec(function(err, user) {
 		if (err) {
 			return res.status(400).send({
