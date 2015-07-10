@@ -131,7 +131,6 @@ module.exports = function(db) {
 /*        console.log('serving the index page');
 */        req.url = '/'; // force the url to serve the index route.
 	    }
-
 	    next();
 
 	});

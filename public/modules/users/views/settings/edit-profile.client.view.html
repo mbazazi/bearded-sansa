@@ -1,74 +1,48 @@
-<section class="view-container container" data-ng-controller="SettingsController">
+<section class="view-container container" >
 <div class="row">
 	<div class="col-md-4">
 	<h3>Edit your profile</h3></div>
 </div>
-  <button class="btn btn-primary" ng-click="save_customer.createCharge(user)">Create Charge</button>
-    <button class="btn btn-warning" ng-click="save_customer.createRefund(user)">Create Refund</button>
+ 
 
 <div class="row">
 
-	<div class="col-md-3">
+	<div class="col-sx-12 col-md-4">
 		<div clas="row">
-			<div class="col-md-offset-2 col-xs-offset-4">
+			<div class="profile_picture">
 				<h4>Profile Picture</h4>
+
 				<div data-ng-controller="ImgCtrl" >
-				    <img ng-src="{{def_av}}" ng-if="!preview">
-				    <img class="img img-responsive img-circle" ng-src="{{preview}}" style="max-height: 150px; max-width: 300px; height: 150px; width:150px;">
-<!-- 				    <cropped-image class="img-circle" ng-src="{{preview}}" width="200" height="200"></cropped-image>
- --><!-- 				    <
- -->			    <div class="btn btn-success" ngf-select ng-model="files">Change Image</div>
-			    <div class="button" ngf-select ngf-change="upload($files)"></div>
-			    <div ngf-drop ng-model="files" class="drop-box" 
-			        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-			        ngf-accept="'image/*,application/pdf'"></div>
-			    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-				<!-- <div class="preview">
-			    Image thumbnail: <img ngf-src="files[0]" ngf-default-src="'/thumb.jpg'" ngf-accept="'image/*'">
-			    </div> -->
-<!-- 			         <button class="btn btn-success" ng-click="upload($files)" >Upload</button>
- -->			</div>
+
+		
+			       <img class="img img-responsive preview" data-ng-src="{{user.profile_pic}}" >
+
+				    <img ng-src="{{def_av}}" ng-if="!user.profile_pic">
+					<image-crop
+			         data-width="150"
+			         data-height="150"
+			         data-shape="square"
+			         data-step="imageCropStep"
+			         data-result="imageCropResult"
+			       ></image-crop>
+
+				</div>
 			</div>
 		</div>
-	</div> <!-- closes the first column div -->
-<!-- 
-            <div class="row">
-            	<div class="col-sm-offset-2"><img ng-src='{{def_av}}'></div>
-            </div>
-            <input  id="inputImage2" 
-                type="file" 
-                accept="image/*" 
-                image="image2" 
-                resize-max-height="300"
-                resize-max-width="250"
-                resize-quality="0.7" />
-            
-            
-            <div><img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/></div>
-         <div><br><br>
-            <button class="btn btn-success" type="submit" ng-click="single(image2)" >Upload</button>
-        </div>
-        <hr />
-		<img ng-show="uploadedImgSrc" ng-src="{{uploadedImgSrc}}" style="max-width:50px; max-height:50px;">
-		</div>
+	</div> 
+	<div class="col-sx-12 col-md-4 ">		
 
-	</div> -->
-	
-	<div class="col-md-5">			
 		<form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
 			<fieldset>
 
 
 				<div class="form-group">
-					<label for="firstName">First Name</label>
 					<input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstName" placeholder="First Name">
 				</div>
 				<div class="form-group">
-					<label for="lastName">Last Name</label>
 					<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastName" placeholder="Last Name">
 				</div>
 				<div class="form-group">
-					<label for="email">Email</label>
 					<input type="email" id="email" name="email" class="form-control" data-ng-model="user.email" placeholder="Email">
 				</div>
 				<div class="form-group">
@@ -90,7 +64,8 @@
 			</fieldset>
 		</form>
 	</div>
-	<div class="col-md-4" ng-if="!card">
+<div class="col-md-1"></div>
+	<div class="col-sx-12 col-md-4" ng-if="!card">
 		<h4>Payment details</h4>
 			<div class="form-group">
 				<button class="btn btn-danger" ui-sref="profile.payment">Add a card now</button>
@@ -99,6 +74,7 @@
 
 		<div ui-view></div>
 	</div>
+
 	<div class="col-md-4" ng-if="card">
 		<h4>Payment details</h4>
 			<div class="form-group">
@@ -114,7 +90,7 @@
 				<label for="exp_date">Card Type:  </label>
 					 {{card.brand}}
 		</div>
-		<button class="btn btn-warning" ui-sref="profile.payment">Edit Payment Details</button>
+		<button class="btn btn-warning" ng-click="openModal()">Edit Payment Details</button>
 
 
 		<div ui-view></div>

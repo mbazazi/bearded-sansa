@@ -4,11 +4,28 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider', 'ngToastProvider',
-	function($locationProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider, ngToastProvider) {
-ngToastProvider.configure({
-    animation: 'fade' // or 'slide'
-  });
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider', 'ngToastProvider', 'notificationsConfigProvider', 'ChartJsProvider',
+	function($locationProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider, ngToastProvider, notificationsConfigProvider, ChartJsProvider) {
+		//Settings for the Notification Bar
+			 // auto hide
+	    notificationsConfigProvider.setAutoHide(true);
+
+	    // delay before hide
+	    notificationsConfigProvider.setHideDelay(3000);
+
+	    // support HTML
+	    notificationsConfigProvider.setAcceptHTML(false);
+
+
+	    // Configure all charts
+    	ChartJsProvider.setOptions({
+      colours: ['#ffbb66', '#DCDCDC', '#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
+      responsive: true
+    });
+
+		ngToastProvider.configure({
+		    animation: 'fade' // or 'slide'
+		  });
 		 	// use HTML 5
 		Stripe.setPublishableKey('pk_test_7LnUmjmnIwkkWJUvgKlqLtSd');
 		uiGmapGoogleMapApiProvider.configure({

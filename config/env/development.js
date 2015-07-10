@@ -3,7 +3,7 @@
 module.exports = {
 	db: 'mongodb://localhost/mymeanapp-dev',
 	app: {
-		title: 'myMeanApp - Development Environment'
+		title: 'Hander - RMTs on Demand'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
@@ -31,13 +31,18 @@ module.exports = {
 		callbackURL: '/auth/github/callback'
 	},
 	mailer: {
-		from: process.env.MAILER_FROM || 'MAILER_FROM',
+		from: process.env.MAILER_FROM || 'info@hander.com',
 		options: {
-			service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
+			service: process.env.MAILER_SERVICE_PROVIDER || 'Mailgun',
 			auth: {
-				user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
-				pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
+				user: process.env.MAILER_EMAIL_ID || 'postmaster@sandbox717ed0cfb43748538a57654c683c267c.mailgun.org',
+				pass: process.env.MAILER_PASSWORD || 'Unl1m1ted77'
 			}
 		}
+	}, 
+	pricelist: {
+		tax_rate: 0.13, 
+		price_per_hour_dollars: 125, 
+		our_commission: 0.25
 	}
 };

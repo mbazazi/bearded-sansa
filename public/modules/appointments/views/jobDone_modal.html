@@ -1,0 +1,26 @@
+  
+        <div class="modal-header">
+            <h3 class="modal-title">You're about to confirm that this job has been completed?</h3>
+        </div>
+        <div class="modal-body ">
+                    
+               <div class="col-md-12">
+                <table class="table table-striped jobDoneTable">
+                    <th>Client Name</th>
+                    <th>Duration</th>
+                    <th>Date</th>
+                    <th>Charge</th>
+                    <tr>
+                     <td>{{app.client[0].displayName}}</td>
+                      <td>{{app.total_time}} hours</td>
+                       <td>{{app.appointment_date| date: 'medium'}}</td>
+                        <td>${{app.cost.dollars}}</td>
+                    </tr>
+                </table>
+                </div>
+            <div class="col-md-12">
+            <button class="btn btn-primary" ng-if="!app.difference_date" ng-click="selectChange()">Confirm</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+       

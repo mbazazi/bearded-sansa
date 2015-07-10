@@ -1,0 +1,34 @@
+<!-- payment.html -->
+
+<div class="modal-header">
+  <h3 class="modal-title">Card Details</h3>
+</div>
+
+<div class="modal-body col-md-12">
+                   
+  <form name="payment_form" stripe:form="payment.getStripeToken" novaliate>
+    <div class="form-group" ng-class="{ 'has-error' : error.message }">
+       <label for="card_number">Card Number</label>
+       <input type="text" class="form-control input-underline" size="20" data-stripe="number" required/>
+    </div>
+    <div class="form-row" ng-class="{ 'has-error' : error.message }">
+        <label for="CVC"> CVC</label>
+        <input type="text" class="form-control input-underline" size="4" data-stripe="cvc"/>
+    </div>
+
+    <div class="form-row" ng-class="{ 'has-error' : error.message }">
+        <label for="exp_month"> Expiration (Month)</label>
+        <input type="text" class="form-control input-underline" size="2" data-stripe="exp-month" />
+       <label for="exp_month"> Expiration (Year)</label>
+       <input type="text" class="form-control input-underline form-control-last" size="4" data-stripe="exp-year"/>
+    </div>
+  
+    <div class="form-row pull-right">
+     <button type="submit" class="btn btn-primary">Update</button>
+     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+     </div>
+   </form>
+  <div class="has-error"> <p ng-show="payment.error.message" ng-hide="payment.token"class="help-block">{{payment.error.message}}</p>
+  </div>           
+</div>
+     

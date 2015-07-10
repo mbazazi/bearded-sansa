@@ -1,0 +1,141 @@
+  
+<div >
+	<rd-widget>
+		<rd-widget-header icon="fa-calendar" title="Controls">
+		</rd-widget-header>
+		<rd-widget-body>
+
+
+		<button ng-click="AppointmentsGetter(app_query, false)" class="btn btn-success btn-sm"> View Apps</button>
+		<button ng-click="AppointmentsGetter(app_query, true)" class="btn btn-success btn-sm"> Cancelled Apps</button>
+
+		</rd-widget-body>
+	</rd-widget>
+</div>
+	<rd-widget id="appointments">
+
+	<rd-widget-header icon="fa-calendar" title="Appointments">
+	</rd-widget-header>
+	<div class="row">
+
+	<div class="col-sm-6 pull-left">
+	<div class="form-group col-sm-12">
+
+		<label for="search">Search Appointments</label>
+		<input type="text" style="background-color: #ffbb66;" placeholder="Search" class="form-control input-sm" ng-model="query"/>
+	</div>
+	</div>
+	<div class="col-sm-6 pull-right">
+			<div class="form-group col-sm-12">
+			<label for="date1">From</label>
+				<input type="date" name="date1" class="form-control"  style="background-color: #ffbb66;" ng-model="date1" ng-change="dateRange(date1, date2)">
+
+			</div>
+			<div class="form-group col-sm-12">
+			<label for="date1">To</label>
+				 <input type="date" name="date1" class="form-control" style="background-color: #ffbb66;" ng-model="date2" ng-change="dateRange(date1, date2)">
+			</div>
+	</div>
+	
+	</div>
+
+	</div>
+			
+			<rd-widget-body classes="medium no-padding">
+				<div class="alert alert-danger" ng-if="!appointments">{{msg}}
+				<button class="btn btn-success" ui-sref="home.date">Book Now</button>
+				</div>
+				<div class="table-responsive" ng-if="appointments">
+					 <table class="table table-striped">
+                       <tr>
+                        <th ng-click="order('displayName')">
+                        	<a href="#">Client</a>
+                        	<span class="sortorder" ng-show="orderProp === 'displayName'" ng-class="{reverse:reverse}"></span>
+
+                        </th>
+                        <td ng-click="order('appointment_date')">
+                        	<a href="#">Date of Appointment</a>
+                        	<span class="sortorder" ng-show="orderProp === 'appointment_date'" ng-class="{reverse:reverse}"></span>
+                        </td>
+                     <!--    <th ng-click="order('created')">
+                        	<a href="#">Date Added</a>
+                        	<span class="sortorder" ng-show="orderProp === 'created'" ng-class="{reverse:reverse}"></span>
+                        </th> -->
+                        <th ng-click="order('staff_id[0].displayName')">
+	                        <a href="#">Staff Assigned</a>
+	                        <span class="sortorder" ng-show="orderProp === 'staff_id[0].displayName'" ng-class="{reverse:reverse}"></span>
+
+                        </th>
+						
+						 <!-- <th ng-if="!isClient" ng-hide="app.jobDone" ng-click="order('confirm_appointment')">
+	                        <a href="#">Confirm Appointment</a>
+	                        <span class="sortorder" ng-show="orderProp === 'confirm_appointment'" ng-class="{reverse:reverse}"></span>
+                        </th> -->
+                        <th ng-hide="app_query.cancelled" ng-if="!isClient" ng-click="order('jobDone')">
+	                        <a href="#">Job Done</a>
+		                    <span class="sortorder" ng-show="orderProp === 'jobDone'" ng-class="{reverse:reverse}"></span>
+
+                        </th>
+                         <th ng-hide="app_query.cancelled">Action</th>
+                         <th ng-show="app_query.cancelled" ng-click="order('cancelled_date')">
+							 <a href="#">Date Cancelled</a>
+		                    <span class="sortorder" ng-show="orderProp === 'cancelled_date'" ng-class="{reverse:reverse}"></span>
+                         </th>
+                        
+                     </tr>
+                    <tr dir-paginate="app in appointments | filter:query | orderBy: orderProp:reverse | itemsPerPage:items">
+                       <td><a href="#" ui-sref="rdash.dash.view({appointmentId: app._id})" >{{app.client[0].displayName}}</a></td>
+                        <td> {{app.appointment_date | date:'mediumDate'}}</td>
+                        <!-- <td>{{app.created | date:'mediumDate'}}</td> -->
+                        <td><a ui-sref="user({userId: app.staff_id[0]._id, userRole: app.staff_id[0].roles[0]})">{{app.staff_id[0].displayName}}</a> </td>
+                      	
+                    <!--   	 <td ng-if="!isClient">
+	                         <span ng-if="app.confirm_appointment"><i class="fa fa-check-square fa-4x"></i></span>
+	                       	 <input class="form-control"
+	                        	ng-if="!app.confirm_appointment"
+	                            bs-switch
+	                            ng-disabled="app.jobDone"
+	                            ng-model="app.confirm_appointment"
+	                            type="checkbox"
+	                            switch-on-text="{{ onText }}"
+	                            switch-off-text="{{ offText }}"
+	                            ng-change="selectChange(app)"
+	                            name="confirm_appointment"
+	                                >
+                        </td> -->
+                        <td ng-if="!isClient" ng-hide="app_query.cancelled">
+	                        <span ng-if="app.jobDone"><i class="fa fa-check-square fa-4x"></i></span>
+	                        <input class="form-control"
+	                            bs-switch
+	                            ng-if="!app.jobDone "
+	                            ng-model="app.jobDone"
+	                            type="checkbox"
+	                            switch-on-text="{{ onText }}"
+	                            switch-off-text="{{ offText }}"
+	                            ng-change="openJobDoneModal(app)"
+	                            name="jobDone_check"
+	                                >
+                        </td>
+                       
+                      
+                        
+                         <td >
+	                      	 <button ng-hide="app.jobDone || app.cancelled"  class="btn btn-success" ng-click="modal(app)">Cancel</button>
+	                      	 <button class="btn btn-danger" ng-if="app.jobDone && authentication.showAdmin && app.stripeChargeObj" ng-click="refund(app._id)" ng-disabled="app.refundObj[0]">Refund</button>
+	                      	 <span ng-show="app_query.cancelled">{{app.cancelled_date | date:'short'}}</span>
+	                     </td>   
+	                  
+       					<td><input type="hidden" ng-model='app._id'></td>
+                         
+                    </tr>
+                      
+                    </table>
+				<dir-pagination-controls></dir-pagination-controls>
+
+					
+        		</div>
+	        	 <rd-widget-footer>
+	        	</rd-widget-footer> 
+        		
+			</rd-widget-body>
+	</rd-widget>

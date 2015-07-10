@@ -1,0 +1,63 @@
+
+.modal-header, .modal-footer{
+	background-color: #6dbcbf;
+	border-radius: 3px;
+	width: 82%;
+	float:left;
+	position: relative;
+	color: #fff;
+}
+
+.modal-body {
+	position:absolute;
+	background-color: #6dbcbf;
+	z-index:1000;
+	border: 5px solid #ffcc66;
+	color: #fff;
+	min-height: 150px;
+	width:100%;
+
+}
+
+.modal-body .jobDoneTable{
+	color: black;
+}
+
+.modal-body .form-control-last{
+	margin-bottom: 15px;
+}
+.modal-body form {
+	background-color: #6dbcbf;
+	color: #fff;
+	padding: 20px;
+	width: 100%;
+}
+.modal-body h2, 
+.modal-body h3, 
+.modal-body h4,
+.modal-body h5 {
+	color: black;
+	margin: 0px;
+}
+
+.modal-body h4{
+	color: #fff;
+	line-height: 1.5em;
+}
+.modal-header h1,
+.modal-body h1,
+.modal-footer h1 {
+	color: #ffcc66;
+}
+
+.modal-footer .btn {
+	background-color: #6dbcbf;
+}
+
+.modal-footer .btn:hover {
+	border-color: red;
+}
+
+.dashlink{
+	color: black;
+}

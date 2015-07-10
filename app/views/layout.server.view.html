@@ -50,14 +50,46 @@
 </head>
 
 <body class="ng-cloak">
+
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top"></header>
 	<section class="content">
+    <notifications-bar class="notifications"></notifications-bar>
+
 	<toast></toast>
+	<span id="loading-indicator"><i class="fa-li fa fa-spinner fa-spin fa-5x"></i></span>
 		<section class="container">
+
 			{% block content %}{% endblock %}
 		</section>
 	</section>
+	<footer>
+	<section>
+	<div class="row">
+		<div class="container">
+			<div class="col-xs-6 col-lg-5">
+				<ul>
+					<li><a ui-sref="about" >About</a></li>
+					<li> <a ui-sref="onboard.onboard_1" >Jobs</a></li>
+					<li><a ui-sref="terms" >Terms and Conditions</a></li>
+					<li><a ui-sref="contact" >Contact</a></li>
+					
+				</ul>
+			</div>
+			<div class="col-xs-4 col-lg-5 push-right right-footer">
+				<ul>
+					<li>Copyright - Hander Inc - 2015</li>
+				</ul>
+			</div>
+			<div class="col-xs-2 col-ls-2">
+				<span><a href="http://www.facebook.com"><i class="fa fa-facebook fa-2x"></i></a></span>
+					<span><a href="http://www.twitter.com"><i class="fa fa-twitter fa-2x"></i></a></span>
+			</div>
+		</div>
+	</div>
+	</section>
+		
 
+	</footer>
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
 

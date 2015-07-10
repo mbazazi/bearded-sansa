@@ -12,7 +12,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 			url: '/',
             views:{
                 '': {templateUrl:'modules/core/views/home.client.view.html'},
-                'checkout@home': {template:'<div class="col-md-4 view-container"><div class="widget-icon col-md-offset-3" style="margin-top:50px"><i class="fa fa-fire fa-5x " ></i></div>'}
+                'checkout@home': {templateUrl:'modules/core/views/sidebar.client.html'}
             }, 
             controller: 'HomeController'
         
@@ -35,6 +35,15 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
                 'checkout@home': {templateUrl:'modules/core/views/checkout.html'}
             },
             controller: 'HomeController'
+        })
+       .state('success', {
+            url: '/success',
+            views:{
+                '': {templateUrl:'modules/core/views/success.html', 
+            controller: 'HomeController'},
+                'panel@success': {templateUrl:'modules/core/views/checkout.html', 
+            controller: 'HomeController'}
+            }
         })/* 
         // url will be /form/payment
         .state('payment', {
@@ -42,5 +51,17 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
             templateUrl: 'modules/core/views/form-payment.html'
             
         })*/;
-	}
-]);
+}])
+.run(['$rootScope', '$state', '$stateParams', 'Authentication', function ($rootScope, $state, $stateParams, Authentication) {
+    $rootScope.authentication = Authentication;
+
+        $rootScope.$on('password_reset', function(res){
+            $rootScope.authentication = Authentication;
+            
+        });
+
+ }]);
+
+
+
+

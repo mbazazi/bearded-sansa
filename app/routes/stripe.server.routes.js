@@ -17,4 +17,7 @@ module.exports = function(app) {
 
 	app.route('/stripe/refund/:chargeID')
 		.post(users.requiresLogin, stripe.createRefund);
+
+	app.route('/stripe/staff/create')
+		.post(users.requiresLogin, stripe.createStaffManagedAccount);
 };

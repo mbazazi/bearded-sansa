@@ -1,0 +1,36 @@
+<section>
+	<div class="alert alert-danger" ng-if='showAlert'> 
+	<p>Looks like you haven't done any jobs so you have no charts to see :-(</p>
+	</div>
+	<div class="col-sm-12 col-md-6 text-center earnings">
+		<h2>Earnings for Period: ${{total_earnings}}</h2>
+	</div>
+	<div class="form-group col-sm-3">
+	<label for="date1">From</label>
+		<input type="date" name="date1" class="form-control"  style="background-color: #ffbb66;" ng-model="date1" ng-change="dateRange(date1, date2)">
+
+	</div>
+	<div class="form-group col-sm-3">
+	<label for="date1">To</label>
+		 <input type="date" name="date1" class="form-control" style="background-color: #ffbb66;" ng-model="date2" ng-change="dateRange(date1, date2)">
+	</div>
+	
+</div>
+<div ng-if="!hideChart" >
+	<canvas  id="line" class="chart chart-line" data="data"
+	  labels="labels" legend="false" series="series" options="options"
+	  click="onClick">
+	</canvas> 
+</div>
+<div class="col-sm-12" ng-hide="hideChart">
+	<p>The chart above shows your earnings. Select the date period for which you'd like to see the data.</p>
+	
+</div>
+<div class="alert alert-warning text-center" ng-show='hideChart'> 
+	<p>There are no results for this date range</p>
+</div>
+
+
+
+
+</section>

@@ -6,7 +6,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="/#!/" class="navbar-brand navbar-brand-text">Masseur</a>
+		<a href="/#!/" class="navbar-brand navbar-brand-text">Händer</a>
 	</div>
 	<nav class="collapse navbar-collapse " collapse="!isCollapsed" role="navigation">
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
@@ -24,6 +24,12 @@
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+			<li ui-sref="home" ng-class="{active: $uiRoute}">
+				<a scroll-on-click href="#howitworks">How it Works</a>
+			</li>
+			<li ui-route="/date" ng-class="{active: $uiRoute}">
+				<a ui-sref="home.date">Book Now</a>
+			</li>
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>
 			</li>

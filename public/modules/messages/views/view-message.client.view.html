@@ -1,0 +1,45 @@
+<section  data-ng-init="findOne()">
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 message_container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="col-sm-12 padded col-xs-6 col-xs-offset-4"><img class="img img-circle"
+				ng-src="{{message.user_from.profile_pic}}" width="100px;" height="100px;"></div>
+			</div>
+			<div class="col-sm-8 col-xs-12">
+				<h2 data-ng-bind="message.subject"></h2>
+			</div>
+			<div class="col-sm-8 col-xs-12">
+				<small>
+				<em class="text-muted">
+					Sent on
+					<span data-ng-bind="message.created | date:'mediumDate'"></span>
+					by
+					<span data-ng-bind="message.user_from.displayName"></span>
+				</em>
+				</small>
+			</div>			
+		</div>
+		<div class="row">
+
+		</div>
+		
+	<div class="row">
+		<div class="message col-sm-12">
+			<hr>
+
+			<h4 data-ng-bind="message.message_body"></h4>
+		</div>
+		<div class="pull-left" data-ng-show="authentication.user">
+			<a class="btn btn-danger" alt="reply" ui-sref="createMessage({usertoId: message.user_from._id})">
+				Reply
+			</a>
+			<a class="btn btn-warning" data-ng-click="remove();">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+			</div>
+		</div>
+	</div>
+</div>
+{{message}}
+</section>

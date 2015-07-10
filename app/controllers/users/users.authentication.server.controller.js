@@ -3,11 +3,17 @@
 /**
  * Module dependencies.
  */
-var _ = require('lodash'),
-	errorHandler = require('../errors.server.controller'),
-	mongoose = require('mongoose'),
-	passport = require('passport'),
-	User = mongoose.model('User');
+var _ 				= require('lodash'),
+	errorHandler 	= require('../errors.server.controller'),
+	mongoose 		= require('mongoose'),
+	passport 		= require('passport'),
+	User 			= mongoose.model('User');
+var path           = require('path'), 
+	templatesDir   = path.resolve(__dirname, '..', 'templates'), 
+	emailTemplates = require('email-templates'), 
+	nodemailer     = require('nodemailer');
+  var emailer = require('../users/users.sendemail.controller');
+
 
 /**
  * Signup
@@ -67,10 +73,7 @@ exports.signin = function(req, res, next) {
 				if (err) {
 					res.status(400).send(err);
 				} else {
-					var userString = JSON.stringify(user);
-					/*console.log(req.cookies);
-					res.cookie('user', userString, { maxAge: 900000, httpOnly: true });*/
-					
+					var userString = JSON.stringify(user);		
 					res.json(user);
 				}
 			});
@@ -87,10 +90,8 @@ exports.signout = function(req, res) {
 
 	req.logout();
 	
-	res.clearCookie('user');
-	res.render('index', {
-		user: req.user || null,
-		request: req
+	res.redirect('/', {
+		user: req.user || null
 	});
 
 };
@@ -115,6 +116,12 @@ console.log(req.body);
 			// Remove sensitive data before login
 			user.password = undefined;
 			user.salt = undefined;
+			if (user.roles[0] === 'staff'){
+				console.log(emailer)
+				emailer.sendAdminEmail(user, function(result){
+					console.log(result);
+				});
+			}
 			res.json(user);
 			}
 		});

@@ -8,7 +8,9 @@ angular.module('users').factory('Stripe', [ '$resource',
 			}, 
 			charge: 
 			{	method:'POST', 
-				params:{charge:true}
+				params:{
+					charge:true
+				}
 			}
 		});
 	}

@@ -14,9 +14,15 @@
             <dt ng-show="formData.back">Back Massage. </dt>
         </dl>
         <hr>
-       
-        <div style="width:50%; float:left;"><strong> Total Cost:</strong></div>
-        <div class="col-md-offset-10"> ${{formData.total_time*85}}</div>
+       <div style="width:50%; float:left;"><p> Massage Cost:</p></div>
+        <div class="col-md-offset-10" style="text-align: right;"> ${{formData.total_cost.dollar_price}}</div>
+
+        <div style="width:30%; float:left; position:absolute;"><p>Tax/HST:</p></div>
+        <div class="col-md-offset-10" style="text-align: right; "> ${{formData.total_cost.dollar_tax}}</div>
+
+        <hr>
+        <div style="width:50%; float:left;"><strong>Total:</strong></div>
+        <div class="col-md-offset-10"> ${{formData.total_cost.dollar_total_price}}</div>
     </div>
     <hr>
     <div style="margin-top:15%;">

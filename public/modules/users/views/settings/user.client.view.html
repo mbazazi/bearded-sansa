@@ -1,149 +1,41 @@
-<section class="view-container container dash">
-<div class="row">
-	<div class="col-md-4">
-	<h3>User Profile</h3></div>
-</div>
-<div class="row">
-		<div class="col-lg-2">
-			<div clas="row">
-				<div class="col-md-offset-2 col-xs-offset-4">
-					<div class="form-group">
-					 <h3 > {{viewing.displayName}}</h3>
-					</div>
-					<div >
-					    <img class="img img-responsive img-circle" ng-src="{{viewing.profile_pic}}" style="max-height: 150px; max-width: 300px; height: 150px; width:150px;">
-					    <fieldset>
-					
-					
-					<div class="form-group">
-						<h5 data-ng-model="viewing.email"> {{viewing.email}}</h5>
-					</div>
-					<div class="form-group" ng-if="viewing.phone">
-						<h5 data-ng-model="viewing.phone"> {{viewing.phone}}</h5>
-					</div>
-					<div class="form-group">
-					Address:
-					<address>
-						{{viewing.address.main_address.street_1}}</br>
-						<div ng-if="viewing.address.main_address.street_2">
-						{{viewing.address.main_address.street_2}}</br></div>
-						{{viewing.address.main_address.city}}</br>
-						{{viewing.address.main_address.postcode}}</br>
-
-					</address>
-					<button ui-sref="userAppointment({userId: viewing._id})">Show appointments</button>
-
-					</div>
-					
-					<div data-ng-show="success" class="text-center text-success">
-						<strong>Profile Saved Successfully</strong>
-					</div>
-					<div data-ng-show="error" class="text-center text-danger">
-						<strong data-ng-bind="error"></strong>
-					</div>
-				</fieldset>
-	<!-- 				    <cropped-image class="img-circle" ng-src="{{preview}}" width="200" height="200"></cropped-image>
-	 --><!-- 				    <
-	 -->			   
-					<!-- <div class="preview">
-				    Image thumbnail: <img ngf-src="files[0]" ngf-default-src="'/thumb.jpg'" ngf-accept="'image/*'">
-				    </div> -->
-	<!-- 			         <button class="btn btn-success" ng-click="upload($files)" >Upload</button>
-	 -->			</div> <!-- closes the ImgCtrl  div -->
-				</div>
-			</div><!-- closes the first row div -->
-		</div> <!-- closes the first column div -->
-
-		<div class="col-md-8 col-sm-10 ">
+<section class=" white-bg view-container container dash">
+	<div class="row">
+		<div class="col-md-4">
+			<h3>User Profile</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="well col-sm-4">
 			<div class="row">
-			<rd-widget>
-		      <rd-widget-header icon="fa-tasks" title="Appointments">
-
-		      </rd-widget-header>
-		      <rd-widget-body classes="medium no-padding">
-
-				 <table class="table table-responsive">
-	                       <tr>
-	                        <th ng-click="order('displayName')">
-	                        	<a href="#">Client</a>
-	                        	<span class="sortorder" ng-show="orderProp === 'displayName'" ng-class="{reverse:reverse}"></span>
-
-	                        </th>
-	                        <td ng-click="order('appointment_date')">
-	                        	<a href="#">Date of Appointment</a>
-	                        	<span class="sortorder" ng-show="orderProp === 'appointment_date'" ng-class="{reverse:reverse}"></span>
-	                        </td>
-	                        <th ng-click="order('created')">
-	                        	<a href="#">Date Added</a>
-	                        	<span class="sortorder" ng-show="orderProp === 'created'" ng-class="{reverse:reverse}"></span>
-	                        </th>
-	                        <th ng-click="order('staff_id[0].displayName')">
-		                        <a href="#">Staff Assigned</a>
-		                        <span class="sortorder" ng-show="orderProp === 'staff_id[0].displayName'" ng-class="{reverse:reverse}"></span>
-
-	                        </th>
-							 <th>Cancel</th>
-							 <th ng-if="!isClient" ng-hide="app.jobDone" ng-click="order('confirm_appointment')">
-		                        <a href="#">Confirm Appointment</a>
-		                        <span class="sortorder" ng-show="orderProp === 'confirm_appointment'" ng-class="{reverse:reverse}"></span>
-	                        </th>
-	                        <th ng-if="!isClient" ng-click="order('jobDone')">
-		                        <a href="#">Job Done</a>
-			                    <span class="sortorder" ng-show="orderProp === 'jobDone'" ng-class="{reverse:reverse}"></span>
-
-	                        </th>
-	                        
-	                        
-	                     </tr>
-	                    <tr dir-paginate="app in ind_apps | filter:query | orderBy: orderProp:reverse | itemsPerPage:items">
-	                       <td><a href="#" ui-sref="rdash.dash.view({appointmentId: app._id})" >{{app.client[0].displayName}}</a></td>
-	                        <td> {{app.appointment_date | date:'mediumDate'}}</td>
-	                        <td>{{app.created | date:'mediumDate'}}</td>
-	                        <td>{{app.staff_id[0].displayName}} </td>
-	                      	 <td>
-
-		                      	 <button ng-disabled="app.jobDone" class="btn btn-danger btn-sm" ng-click="cancelAppointment(app)">Cancel</button>
-		                     </td>   
-	                      	 <td ng-if="!isClient">
-		                         <span ng-if="app.jobDone">Confirmed<i class="fa fa-check"></i></span>
-		                       	 <input class="form-control"
-		                        	ng-if="!app.jobDone"
-		                            bs-switch
-		                            switch-size="small"
-		                            ng-disabled="app.jobDone"
-		                            ng-model="app.confirm_appointment"
-		                            type="checkbox"
-		                            switch-on-text="{{ onText }}"
-		                            switch-off-text="{{ offText }}"
-		                            ng-change="selectChange(app)"
-		                            name="confirm_appointment"
-		                                >
-	                        </td>
-	                        <td ng-if="!isClient">
-		                        <span ng-if="app.jobDone">Job Done<i class="fa fa-check"></i></span>
-		                        <input class="form-control"
-		                            bs-switch
-		                 	        switch-size="small"
-		                            ng-if="!app.jobDone"
-		                            ng-model="app.jobDone"
-		                            type="checkbox"
-		                            switch-on-text="{{ onText }}"
-		                            switch-off-text="{{ offText }}"
-		                            ng-change="selectChange(app)"
-		                            name="jobDone_check"
-		                                >
-	                        </td>
-	                       
-	                        <td>
-	                        <button class="btn btn-warning btn-sm" ng-if="app.jobDone && authentication.showAdmin" ng-click="payment.createRefund( app._id)">Refund</button></td>   
-	                         
-	                    </tr>
-	                      
-	                    </table>
-						  <dir-pagination-controls></dir-pagination-controls>
-				</rd-widget-body>
-			</div>
-		</div>			
-</div>
+					<div class="form-group">
+						<h3 > {{viewing.displayName}}</h3>
+					</div>
+					<div class="row">
+						<div class="col-sx-12 col-xs-offset-4 col-sm-offset-2 col-lg-offset-3">
+						
+							    <img class="img img-responsive img-circle" 
+								data-ng-src="{{viewing.profile_pic}}"
+							    style="max-height: 150px; max-width: 300px; height: 150px; width:150px;">    
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sx-8 col-xs-offset-2 col-sm-offset-1 col-lg-offset-3">
+							<div class="form-group">
+								<span class="pull-right"><a href="#"><i class="fa fa-heart fa-lg"></i></a></span>
+							</div>
+							<div class="form-group" ng-if="viewing.phone">
+								<h5 data-ng-model="viewing.phone"> {{viewing.phone}}</h5>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+		</div> <!-- closes the first column div -->
+		<div class="col-sm-8">
+			<div ng-if="!authentication.isClient" ui-view="userAppointments"></div>
+			<div ng-if="authentication.isClient" ui-view="profile"></div>
+		</div>
+	</div>
+		
 
 </section>

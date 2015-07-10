@@ -1,0 +1,20 @@
+<section  id="messages">
+    <div class="list-group">
+
+        <a dir-paginate="message in messages | itemsPerPage:items" data-ng-href="/messages/{{message._id}}" class="list-group-item" ng-class="{message_read: message.message_read}">
+			<small class="list-group-item-text">
+				Date:
+				<span data-ng-bind="message.created | date:'medium'"></span>
+				<div ng-if="message.user.displayName">From:
+				<span data-ng-bind="message.user.displayName"></span></div>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="message.subject"></h4>
+        </a>
+    </div>
+    <div class="row">
+        <dir-pagination-controls></dir-pagination-controls>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!messages.$resolved || messages.length">
+    	You have no messages
+    </div>
+</section>

@@ -8,6 +8,7 @@ var _ = require('lodash'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	User = mongoose.model('User');
+	var mailer = require('../users/users.sendemail.controller.js');
 	var path = require('path');
 	var fs = require('fs');
 	var logger = require('morgan');
@@ -71,11 +72,27 @@ exports.list = function(req, res, next) {
 exports.uploadAvatar = function(req, res){
 	console.log(req.body);
 	console.log(req.files);
+var dataURL = req.body.dataURL;
+var date = new Date().toDateString();
+var base64 = dataURL.replace(/^data:image\/png;base64,/, '');
+
+var filename = req.body.firstname+'_'+req.body.lastname+'_'+date;
+console.log(filename);
+var dirname = path.resolve('.');
+ fs.writeFile(dirname +'/public/img/profile_pics/'+filename, base64, 'base64', function(err) {
+            if(err) res.sendStatus(404);
+            console.log(err);
+             res.json(200, { 
+                path: dirname +'/public/img/profile_pics/'+filename,
+                msg: 'Pic Updated Successfully', 
+                dataURL: dataURL
+            });
+	});
 /*
 	/*console.log(req);*/
-var image =  req.files.file;
+/*var image =  req.files.file;
 var tmp_path = req.files.file.path;
-var dirname = path.resolve('.');
+
 var target_path = dirname + '/public/img/profile_pics/'+image.originalname;
  fs.rename(tmp_path, target_path, function(err) {
         if (err) throw err;
@@ -89,11 +106,10 @@ var target_path = dirname + '/public/img/profile_pics/'+image.originalname;
             });  
         });
     });
-
+*/
 /*res.json({msg: 'OK'});
 *///getting the variables we need   
-/*var dataURL = req.body.dataURL;
-var base64 = dataURL.replace(/^data:image\/png;base64,/, '');*/
+/*var */
 /*var filename = req.files.image.name;
 var lastname = filename.replace(' ','_');
 var name = lastname.split('.');
@@ -159,10 +175,15 @@ exports.uploadAvatar = function (req, res) {
 */
 
 exports.get_staff = function (req, res, next){
-console.log(req.query);
-User.find({roles: req.query.roles})
+
+if (req.query && req.query.roles === undefined){
+	var query = req.query.s;
+	console.log(query);
+User.find({displayName:  new RegExp(query, 'i'), 
+roles: 'staff'}).select('-password -salt -stripeCustomer -email -address')
 .exec(function (err, user){
 		if (err) {
+			console.log(err);
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
@@ -170,11 +191,60 @@ User.find({roles: req.query.roles})
 		if (user.length === 0){
 		res.json({staff: false});
 		} else {
+			console.log(user);
 			res.json(user);
 		}
 	});
+
+} else {
+		User.find({roles: req.query.roles})
+		.select('-salt -password')
+		.exec(function (err, user){
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				}
+				if (user.length === 0){
+				res.json({staff: false});
+				} else {
+					res.json(user);
+				}
+		});
+	}
 };
 
+exports.new_staff_application = function(req, res){
+
+console.log(req.body.address);
+req.body.roles = 'staff';
+req.body.staff_data = {};
+req.body.staff_data.application_date = new Date();
+req.body.provider = 'local';
+req.body.displayName = req.body.firstName + ' '+ req.body.lastName;
+req.body.password = 12312412412;
+var user = new User(req.body);
+console.log(user.address);
+
+// /*Then save the user 
+	user.save(function(err) {
+		if (err) {
+			console.log(err);
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			mailer.sendAdminEmail(user, function(result){
+				if (result.response ==='250 Great success'){
+					res.status(200).json({
+						msg: 'OK'
+					});
+				}
+					
+			});
+		}
+	});
+};
 exports.getOne = function(req, res, next) {
 console.log('THis is the GEt one User &&&&&&&&&'+req);
 	User.findOne({_id: req.params.id}).exec(function(err, user) {
@@ -213,10 +283,30 @@ exports.check_username = function (req, res, next){
 
 
 exports.removeUser = function (req, res, next){
-console.log(req.query._id);
-var id = req.query._id;
+var id = req.params.id;
 
 	User.remove({_id: id}, 1).exec(function (err, user){
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		}
+
+		if (user.length === 0){
+		res.status(404).send({
+			message: 'No user'
+		});
+		} else {
+			res.status(200).send({message: 'User Removed'});
+			
+		}
+	});
+};
+
+exports.removeAdmin = function (req, res, next){
+var email = req.body.email;
+console.log(email);
+	User.remove({email: email}, 1).exec(function (err, user){
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

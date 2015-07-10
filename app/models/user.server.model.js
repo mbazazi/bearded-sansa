@@ -42,8 +42,7 @@ var UserSchema = new Schema({
 	email: {
 		type: String,
 		trim: true,
-		unique: true,
-		required: 'Please fill in a username',
+		required: 'Please fill in an email',
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
 		match: [/.+\@.+\..+/, 'Please fill a valid email address']
 	},
@@ -57,6 +56,7 @@ var UserSchema = new Schema({
 	salt: {
 		type: String
 	},
+	stripe_managed_data:{},
 	provider: {
 		type: String,
 		required: 'Provider is required'

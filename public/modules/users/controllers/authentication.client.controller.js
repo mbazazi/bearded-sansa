@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication', '$rootScope', '$cookies', '$state', 'myAppointment', 
-	function($scope, $http, $location, Authentication, $rootScope, $cookies, $state, myAppointment) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication', '$rootScope', '$state', 'myAppointment', 
+	function($scope, $http, $location, Authentication, $rootScope, $state, myAppointment) {
 		$scope.authentication = Authentication;
 	/*	var myAppointmentObj = myAppointment.getData();
 		$scope.credentials = myAppointmentObj;
@@ -14,8 +14,6 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		}*/
 		// If user is signed in then redirect back home
 		if ($scope.authentication.user) $location.path('/');
-			
-
 			$scope.$on('error', function(event, data){
 				$scope.error = data.message;
 			

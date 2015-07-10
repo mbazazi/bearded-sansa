@@ -8,11 +8,11 @@ angular.module('rdash').controller('UserViewController', ['$scope', 'Users', '$s
 		if ($stateParams.userRole === 'user'){
 			app_query = {
 				client: $stateParams.userId
-			}
+			};
 		} else {
 			app_query = {
 				staff_id: $stateParams.userId
-			}
+			};
 		}
 		console.log($stateParams);
 		$scope.findOne = function() {
@@ -25,5 +25,5 @@ angular.module('rdash').controller('UserViewController', ['$scope', 'Users', '$s
 		};
 		if ($stateParams.userId){
 			$scope.findOne();
-		};
+		}
 }]);

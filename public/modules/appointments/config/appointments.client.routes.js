@@ -7,7 +7,8 @@ angular.module('appointments').config(['$stateProvider',
 		$stateProvider.
 		state('appointments', {
 			url: '/appointments',
-			templateUrl: 'modules/appointments/views/list-appointments.client.view.html'
+			templateUrl: 'modules/appointments/views/appointments-view.html', 
+			controller: 'AppointmentsController'
 		}).
 		state('create_appointment', {
 			url: '/appointments/create',
@@ -16,11 +17,13 @@ angular.module('appointments').config(['$stateProvider',
 		}).
 		state('appointments_view', {
 			url: '/appointments/:appointmentId',
-			templateUrl: 'modules/appointments/views/view-appointment.client.view.html'
+			templateUrl: 'modules/appointments/views/view-appointment.client.view.html',
+			controller: 'AppointmentsController'
 		}).
 		state('appointment_edit', {
 			url: '/appointments/:appointmentId/edit',
-			templateUrl: 'modules/appointments/views/edit-appointment.client.view.html'
+			templateUrl: 'modules/appointments/views/edit-appointment.client.view.html', 
+			controller: 'AppointmentsController'
 		});
 
 

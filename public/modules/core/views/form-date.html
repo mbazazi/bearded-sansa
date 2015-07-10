@@ -3,7 +3,7 @@
 <h4>When would you like to see an RMT?</h4>
 
  	<div class="form-group" ng-class="{ 'has-error' : myform.date.$invalid && !myform.date.$pristine }">
-      
+
        <div class=""> 
          <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="formData.appointment_date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" ng-required readonly-time="false"></datetimepicker>   
       
@@ -50,7 +50,6 @@
           </div>
 
    </div>
-
   <div class="[ col-xs-12 col-sm-6 ]">
           <div class="[ form-group ]">
               <input type="checkbox" name="head" id="head" ng-model="formData.head" autocomplete="off" />
@@ -87,9 +86,10 @@
           </a>
   </div>
 </div>
-<div ng-if="authentication.user._id"
+</form ng-if="authentication.user._id">
+<div ng-if="authentication.user._id">
 <div class="col-xs-6  col-xs-offset-3">
-          <button ui-sref="success" ng-disabled="showC" ng-class="{'btn btn-danger' : showC, 'btn btn-success' : !showC}">
+          <button type="submit" ng-disabled="showC" ng-class="{'btn btn-danger' : showC, 'btn btn-success' : !showC}">
           Finish Now
           </button>
   </div>

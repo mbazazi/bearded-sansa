@@ -4,9 +4,9 @@
   </div>
 </div>
 
-<div class="row" data-ng-controller="AdminsController" ng-init="appointmentsGetter(app_query)">
-
-	<div class="col-lg-3 col-md-6 col-sm-12">
+<div class="row">
+	<div class="col-lg-3 col-md-6 col-sm-12" >
+	<a class="dashlink" scroll-on-click href="#appointments">
 		<rd-widget>
 			<rd-widget-body>
 				<div class="widget-icon green pull-left">
@@ -16,12 +16,24 @@
 				<div class="comment">Appointments</div>
 			</rd-widget-body>
 		</rd-widget>
+		</a>
 	</div>
-	<div class="col-lg-3 col-md-6 col-xs-12" ng-if="!isClient">
+		<div class="col-lg-3 col-md-6 col-sm-12" ng-if="!isClient">
+		 <a class="dashlink" scroll-on-click href="#appointments">
+		 <rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon red pull-left">
+					<i class="fa fa-calendar"></i>
+				</div>
+				<div class="title">{{appointments_completed}}</div>
+				<div class="comment">Completed</div>
+			</rd-widget-body>
+		</rd-widget>
+		</a>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-12" controller="AdminsController" ng-if="authentication.showAdmin ">
 		<rd-widget>
 			<rd-widget-body>
-
-
 				<div class="widget-icon blue pull-left">
 					<i class="fa fa-users"></i>
 				</div>
@@ -32,152 +44,32 @@
 	</div>
 
 <div class="col-lg-3 col-md-6 col-sm-12">
-		<rd-widget>
-			<rd-widget-body>
-				<div class="widget-icon red pull-left">
-					<i class="fa fa-comment"></i>
-				</div>
+		<a  class="dashlink" scroll-on-click href="#messages"><div ui-view="new_messages"></div></a>
+</div>
+	<div class="col-sm-12 col-md-12">
 
-				<div class="title">20</div>
-				<div class="comment">Messages</div>
-			</rd-widget-body>
-		</rd-widget>
-	</div>
-	<div class="col-sm-12">
-	<div ng-if="!isClient">
-	<rd-widget>
-	<rd-widget-header icon="fa-calendar" title="Controls">
-	<button ng-click="viewCancelledAppointments()" class="btn btn-success">Cancelled Apps</button>
-	<button ng-click="appointmentsGetter({cancelled: false})" class="btn btn-success"> View Apps</button>
-	<button ng-click="appointmentsGetter({cancelled: true})" class="btn btn-success"> Cancelled Apps</button>
-	</rd-widget-header>
-	</rd-widget>
+<!-- 	This is where the Appointments table is added by UI Router -->
+		<div ui-view="appointments"></div>
+
+	</divs>
 	
-	</div>
-	<rd-widget>
-			<div class="col-sm-5 pull-right">
-						Search Appointments<input type="text" placeholder="Search" class="form-control input-sm" ng-model="query"/>
-
-
-			</div>
-			<rd-widget-header icon="fa-calendar" title="Appointments">
-			</rd-widget-header>
-			<rd-widget-body classes="medium no-padding">
-				<div class="alert alert-danger" ng-if="!appointments">{{msg}}</div>
-				<div class="table-responsive" ng-if="appointments">
-					 <table class="table table-striped">
-                       <tr>
-                        <th ng-click="order('displayName')">
-                        	<a href="#">Client</a>
-                        	<span class="sortorder" ng-show="orderProp === 'displayName'" ng-class="{reverse:reverse}"></span>
-
-                        </th>
-                        <td ng-click="order('appointment_date')">
-                        	<a href="#">Date of Appointment</a>
-                        	<span class="sortorder" ng-show="orderProp === 'appointment_date'" ng-class="{reverse:reverse}"></span>
-                        </td>
-                        <th ng-click="order('created')">
-                        	<a href="#">Date Added</a>
-                        	<span class="sortorder" ng-show="orderProp === 'created'" ng-class="{reverse:reverse}"></span>
-                        </th>
-                        <th ng-click="order('staff_id[0].displayName')">
-	                        <a href="#">Staff Assigned</a>
-	                        <span class="sortorder" ng-show="orderProp === 'staff_id[0].displayName'" ng-class="{reverse:reverse}"></span>
-
-                        </th>
-						 <th>Cancel</th>
-						 <th ng-if="!isClient" ng-hide="app.jobDone" ng-click="order('confirm_appointment')">
-	                        <a href="#">Confirm Appointment</a>
-	                        <span class="sortorder" ng-show="orderProp === 'confirm_appointment'" ng-class="{reverse:reverse}"></span>
-                        </th>
-                        <th ng-if="!isClient" ng-click="order('jobDone')">
-	                        <a href="#">Job Done</a>
-		                    <span class="sortorder" ng-show="orderProp === 'jobDone'" ng-class="{reverse:reverse}"></span>
-
-                        </th>
-                        
-                        
-                     </tr>
-                    <tr dir-paginate="app in appointments | filter:query | orderBy: orderProp:reverse | itemsPerPage:items">
-                       <td><a href="#" ui-sref="rdash.dash.view({appointmentId: app._id})" >{{app.client[0].displayName}}</a></td>
-                        <td> {{app.appointment_date | date:'mediumDate'}}</td>
-                        <td>{{app.created | date:'mediumDate'}}</td>
-                        <td>{{app.staff_id[0].displayName}} </td>
-                      	 <td>
-
-	                      	 <button ng-disabled="app.jobDone" class="btn btn-danger" ng-click="cancelAppointment(app, 0)">Cancel</button>
-	                     </td>   
-                      	 <td ng-if="!isClient">
-	                         <span ng-if="app.jobDone">Confirmed<i class="fa fa-check"></i></span>
-	                       	 <input class="form-control"
-	                        	ng-if="!app.jobDone"
-	                            bs-switch
-	                            ng-disabled="app.jobDone"
-	                            ng-model="app.confirm_appointment"
-	                            type="checkbox"
-	                            switch-on-text="{{ onText }}"
-	                            switch-off-text="{{ offText }}"
-	                            ng-change="selectChange(app)"
-	                            name="confirm_appointment"
-	                                >
-                        </td>
-                        <td ng-if="!isClient">
-	                        <span ng-if="app.jobDone">Job Done<i class="fa fa-check"></i></span>
-	                        <input class="form-control"
-	                            bs-switch
-	                            ng-if="!app.jobDone"
-	                            ng-model="app.jobDone"
-	                            type="checkbox"
-	                            switch-on-text="{{ onText }}"
-	                            switch-off-text="{{ offText }}"
-	                            ng-change="selectChange(app)"
-	                            name="jobDone_check"
-	                                >
-                        </td>
-                       
-                        <td>
-                        <button class="btn btn-warning" ng-if="app.jobDone && authentication.showAdmin" ng-click="payment.createRefund( app._id)">Refund</button></td>   
-                         
-                    </tr>
-                      
-                    </table>
-					  <dir-pagination-controls></dir-pagination-controls>
-
-					
-        		</div>
-        	<!-- <rd-widget-footer>
-				
-                <label for="items">Items per Page</label>
-                <select class="form-control" ng-model="items">
-                 <option value="2">2</option>
-                 <option value="5">5</option>
-                 <option value="10">10</option>
-                 <option value="15">15</option>
-                 <option value="25">25</option>
-                 <option value="50">50</option>
-              </select>
-        	</rd-widget-footer> -->
-        		
-			</rd-widget-body>
-			
+</div>
+<div class="col-sm-12 col-md-12">
 		<rd-widget>
+			<rd-widget-header icon="fa-comment-o" title="Messages">
+				
+			</rd-widget-header>
+					<rd-widget-body>
+					<button class="btn btn-sm btn-warning" ui-sref="createMessage">New Message</button><hr>
+					<!-- 	This is where the Message table is added by UI Router -->
+
+						<div ui-view="messages"></div>
+
+					</rd-widget-body>
+		</rd-widget>
+	
+
 	</divs>
 </div>
-</div>
 
-<div class="row">
-	<div  class="col-xs-12">
-   		<div ui-view></div>
-
-	</div>
-	<!-- <div class="col-lg-6">
-		<rd-widget>
-			<rd-widget-header icon="fa-cog fa-spin" title="Loading Directive">
-				<a href="http://tobiasahlin.com/spinkit/" target="_blank">SpinKit</a>
-			</rd-widget-header>
-			<rd-widget-body>
-				<rd-loading></rd-loading>
-			</rd-widget-body>
-		</rd-widget>
-	</div> -->
 </div>

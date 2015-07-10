@@ -22,9 +22,11 @@ var AppointmentSchema = new Schema({
 	staff_id_query: { type: String }, 
 	staff_id: [{ type: Schema.Types.ObjectId, ref: 'User' }], 
 	appointment_address: {}, 
-	cost:{
-		type: Number
-	}, 
+	cost:{}, 
+	total_time:{
+		type: Number, 
+		default: 1
+	},
 	confirm_appointment:{
 		type: Boolean, 
 		default: false
@@ -34,6 +36,24 @@ var AppointmentSchema = new Schema({
 		default: false
 	},  
 	cancelled:{
+		type: Boolean, 
+		default: false
+	}, 
+	cancelled_date:{
+		type: Date
+	},
+	staff_allocated:{
+		type:Boolean, 
+		default: false
+	}, 
+	staff_allocated_date: {
+		type: Date
+	}, 
+	cancelled_by_staff: {
+		type: Boolean, 
+		default: false
+	}, 
+	payment_entered: {
 		type: Boolean, 
 		default: false
 	}

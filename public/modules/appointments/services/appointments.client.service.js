@@ -7,6 +7,9 @@ angular.module('appointments').factory('Appointments', ['$resource',
 		}, {
 			update: {
 				method: 'PUT'
+			}, 
+			cancel: {
+				method: 'POST'
 			}
 		});
 	}

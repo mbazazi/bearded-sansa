@@ -1,34 +1,82 @@
 <!-- payment.html -->
-<section class="row view-container" ng-init="save_customer" ng-controller="SettingsController">
-<div class="col-md-10">
-<h3 class="text-center">Card Details</h3>
-  <form name="payment_form" stripe:form="save_customer.getStripeToken" novaliate>
-    <div class="form-group" ng-class="{ 'has-error' : error.message }">
-      <label for="card_number">Card Number</label>
-       <input type="text" class="form-control input-underline" size="20" data-stripe="number" required/>
-    </div>
-    <div class="form-row" ng-class="{ 'has-error' : error.message }">
-      <label for="CVC"> CVC</label>
-        <input type="text" class="form-control input-underline" size="4" data-stripe="cvc"/>
-    </div>
 
-    <div class="form-row" ng-class="{ 'has-error' : error.message }">
-      <label for="exp_month"> Expiration (Month)</label>
-        <input type="text" class="form-control input-underline" size="2" data-stripe="exp-month" />
-      <label for="exp_month"> Expiration (Year)</label>
-       <input type="text" class="form-control input-underline" size="4" data-stripe="exp-year"/>
-    </div>
-    <div class="has-error"> <p ng-show="save_customer.error.message" ng-hide="save_customer.token"class="help-block">{{save_customer.error.message}}</p>
-    </div>
-    <div class="text-center">
-      <span class="glyphicon glyphicon-heart"></span>
-      <button type="submit" class="btn btn-primary">Update Payment Details</button>
-        <br>
-    </div>
-  </form>
 
+<section class="row view-container" ng-init="save_customer">
+<div class="container">
+
+<div class="col-md-10 " ng-show="appointment.total_cost.dollar_total_price">
+<h3>Checkout - Payment</h3>
+<p>You're about to complete your booking. Don't worry - you will not be charged until the appointment is over.</p>
+<p>You can cancel the appointment without charge up to 24hours before the date and time of the appointment. For more information check out <a href="/terms/#cancellation">Cancellation Policy</a></p>
+<p>This is to confirm your appointment: </p>
+  <div class="row">
+  <div class="col-md-4 col-md-offset-3">
+  <hr>
+  <p>Appointment Date: {{appointment.appointment_date| date:'fullDate'}}</p>
+  p>Appointment Time: {{appointment.appointment_date| date:'fullDate'}}</p>
+  <p><strong>Total Cost:</strong> {{appointment.total_cost.dollar_total_price}}</p>
+  </div>
+  </div>
+</div>
+
+<div class="modal-header">Card Details</div>
+  <div class="col-md-10">
+  <h3 class="text-center"></h3>
+    <form name="payment_form" stripe:form="save_customer.getStripeToken" novaliate>
+      <div class="form-group" ng-class="{ 'has-error' : error.message }">
+        <label for="card_number">Card Number</label>
+         <input type="text" class="form-control input-underline" size="20" data-stripe="number" required/>
+      </div>
+      <div class="form-row" ng-class="{ 'has-error' : error.message }">
+        <label for="CVC"> CVC</label>
+          <input type="text" class="form-control input-underline" size="4" data-stripe="cvc"/>
+      </div>
+
+      <div class="form-row" ng-class="{ 'has-error' : error.message }">
+        <label for="exp_month"> Expiration (Month)</label>
+          <input type="text" class="form-control input-underline" size="2" data-stripe="exp-month" />
+        <label for="exp_month"> Expiration (Year)</label>
+         <input type="text" class="form-control input-underline" size="4" data-stripe="exp-year"/>
+      </div>
+      <div class="has-error"> <p ng-show="save_customer.error.message" ng-hide="save_customer.token"class="help-block">{{save_customer.error.message}}</p>
+      </div>
+      <div class="text-center">
+        <span class="glyphicon glyphicon-heart"></span>
+        <button type="submit" class="btn btn-primary">Update Payment Details</button>
+          <br>
+      </div>
+    </form>
+
+  </div>
 </div>
 </div>
 </section>
 
 
+<!-- 
+  <div class="modal-header">
+            <h3 class="modal-title">Card Details</h3>
+        </div>
+        <div class="modal-body">
+                    
+               <div class="col-md-12">
+                <table class="table table-striped">
+                    <th>Client Name</th>
+                    <th>Duration</th>
+                    <th>Date</th>
+                    <th>Charge</th>
+                    <tr>
+                     <td>{{app.client[0].displayName}}</td>
+                      <td>{{app.total_time}} hours</td>
+                       <td>{{app.appointment_date| date: 'medium'}}</td>
+                        <td>${{app.cost.dollars}}</td>
+                    </tr>
+                </table>
+                </div>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="selectChange()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+ -->

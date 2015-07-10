@@ -1,0 +1,51 @@
+<section>
+<div class="row ">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="page-header">
+        <h1>New Message</h1>
+    </div>
+   <!--  <div class="col-md-12">   <button class="btn" ng-click="test.setReceive(user)">Test Service funciton</button>
+     <div class="col-md-12">   <button class="btn" ng-click="test.getReceive()">Get Service funciton</button> -->
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+            <div class="form-group" ng-show="!$stateParams.usertoId">
+            <angucomplete-alt id="members"
+              placeholder="To"
+              pause="50"
+              selected-object="testObj"
+              remote-url="http://localhost:3000/users/?s="
+              title-field="displayName"
+              image-field="profile_pic"
+              input-class="form-control input-underline form-control-small"
+              /></angucomplete-alt>
+              </div>
+          <div class="form-group">
+              <input class="form-control input-underline " ng-if="$stateParams.usertoId" data-ng-model="testObj.displayName" ng-disabled="testObj.displayName" > </div> 
+              
+         
+                <div class="form-group">
+
+                    <div class="controls">
+                        <input type="text" data-ng-model="subject" id="subject" class="form-control input-underline " placeholder="Subject">
+                    </div>
+                 
+                    <div class="controls">
+                    <textarea class="form-control input-underline" maxlength="30000" class="form-control" rows="5" data-ng-model="message_body" placeholder="Say Something nice..."></textarea>
+            
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Send</button>
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+   <!--  <div class="" ng-show="testObj">
+            You selected <span class="bold-span">{{testObj}}</span>
+          </div>
+    </div> -->
+  </div>
+</section>

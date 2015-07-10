@@ -5,33 +5,64 @@
         <form name="userForm" data-ng-submit="createUser()" novalidate autocomplete="off">
             <fieldset>
                 <div class="form-group">
-                    <label for="firstName">First Name</label>
                     <input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
                 </div>
                 <div class="form-group">
-                    <label for="lastName">Last Name</label>
                     <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
                 </div>
                  <div class="form-group">
-    
-                   <label class="radio inline"> <input type="radio"  name="user_role" data-ng-model="credentials.roles" value="user">User</label>
-                    <label class="radio inline"> <input type="radio"  name="user_role" data-ng-model="credentials.roles" value="staff">Staff</label>
-                    <label class="radio inline"> <input type="radio"  name="user_role"  data-ng-model="credentials.roles" value="admin">Admin</label>
+                 <div class="[ form-group ]">
+                      <input type="radio" name="user" id="user" ng-model="credentials.roles" value="user" autocomplete="off" />
+                      <div class="[ btn-group ]">
+                          <label for="user" class="[ btn btn-info ]">
+                              <span class="[ glyphicon glyphicon-ok ]"></span>
+                              <span> </span>
+                          </label>
+                          <label for="user" class="[ btn btn-default active ]">
+                                User
+                          </label>
+                      </div>
+                  </div>
+                  <div class="[ form-group ]">
+                      <input type="radio" name="staff" id="staff" ng-model="credentials.roles" value="staff" autocomplete="off" />
+                      <div class="[ btn-group ]">
+                          <label for="staff" class="[ btn btn-info ]">
+                              <span class="[ glyphicon glyphicon-ok ]"></span>
+                              <span> </span>
+                          </label>
+                          <label for="staff" class="[ btn btn-default active ]">
+                                staff
+                          </label>
+                      </div>
+                  </div>
+                  <div class="[ form-group ]">
+                      <input type="radio" name="admin" id="admin" ng-model="credentials.roles" value="admin" autocomplete="off" />
+                      <div class="[ btn-group ]">
+                          <label for="admin" class="[ btn btn-info ]">
+                              <span class="[ glyphicon glyphicon-ok ]"></span>
+                              <span> </span>
+                          </label>
+                          <label for="admin" class="[ btn btn-default active ]">
+                                Admin
+                          </label>
+                      </div>
+                  </div>
+        
+                  <!--  <label class="radio inline form-control"> <input type="radio"  name="user_role" data-ng-model="credentials.roles" value="user">User</label>
+                    <label class="radio inline form-control"> <input type="radio"  name="user_role" data-ng-model="credentials.roles" value="staff">Staff</label>
+                    <label class="radio inline form-control"> <input type="radio"  name="user_role"  data-ng-model="credentials.roles" value="admin">Admin</label> -->
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="street_1" class="form-control" data-ng-model="credentials.address.main_address.street_1" placeholder="e.g. 2k - 150 Beverley Street">
+                    <input type="text" id="address" name="street_1" class="form-control" data-ng-model="credentials.address.main_address.street_1" placeholder="e.g. Address 2k - 150 Beverley Street">
                     <input type="text"  name="street_2" class="form-control" data-ng-model="credentials.address.main_address.street_2" placeholder="Street 2">
                     <input type="text"  name="city" class="form-control" data-ng-model="credentials.address.main_address.city" placeholder="City">
                     <input type="text"  name="postcode" class="form-control" data-ng-model="credentials.address.main_address.postcode" placeholder="Postcode">

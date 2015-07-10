@@ -7,7 +7,8 @@ angular.module('users').config(['$stateProvider',
 		$stateProvider.
 		state('profile', {
 			url: '/settings/profile',
-			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
+			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html', 
+			controller: 'SettingsController'
 		}).
 		state('profile.payment', {
 			url: '/payment',
@@ -24,7 +25,8 @@ angular.module('users').config(['$stateProvider',
 		}).
 		state('payment', {
 			url: '/payment',
-			templateUrl: 'modules/users/views/settings/payment.client.view.html'
+			templateUrl: 'modules/users/views/settings/payment.client.view.html', 
+			controller: 'SettingsController'
 		}).
 		state('signup', {
 			url: '/signup',
@@ -49,6 +51,29 @@ angular.module('users').config(['$stateProvider',
 		state('reset', {
 			url: '/password/reset/:token',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
-		});
+		}).
+		state('user', {
+                url: '/user/:userId/:userRole',
+                views:{
+	                '': {templateUrl: 'modules/users/views/settings/user.client.view.html', 
+	             		controller: 'SettingsController'
+	             	},
+	                'userAppointments@user': {
+	                    templateUrl: 'modules/appointments/views/appointments-view.html', 
+	                    controller: 'AppointmentsController', 
+	                    resolve: {
+                        	appointments: [ '$q', 'Appointments', function($q, Appointments){
+                            var JobDone = Appointments.query({jobDone: true});
+                            var notCancelled = Appointments.query({cancelled: false});
+                            return $q.all([JobDone.$promise, notCancelled.$promise]);
+                        	}]
+                   		 }
+   					}, 
+   					'profile@user': {
+   						templateUrl: 'modules/users/views/partials/staff-profile.html', 
+   						controller: 'SettingsController'
+   					}
+              	}  
+         });
 	}
 ]);

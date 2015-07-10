@@ -1,22 +1,35 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Authentication', '$http', '$location', '$state', 'myAppointment', 'Payment', 'Users', '$cookies', '$cookieStore',
-	function($scope, $rootScope, Authentication, $http, $location, $state, myAppointment, Payment, Users, $cookies, $cookieStore) {
+angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Authentication', '$http', '$location', '$state', 'myAppointment', 'Payment', 'Users', 'Appointments', 'geocoder', 'notifications', '$locale', 
+	function($scope, $rootScope, Authentication, $http, $location, $state, myAppointment, Payment, Users, Appointments, geocoder, notifications, $locale) {
 		// This provides Authentication context.
+		var hourly = 125;
+	
+	/*	This is for GEOLOCATION OF THE USER for currency
+		 if(navigator.geolocation) {
+		    var browserSupportFlag = true;
+		    navigator.geolocation.getCurrentPosition(function(position) {
+		    	geocoder.geolocate(position);
+
+		    }, function() {
+		      handleNoGeolocation(browserSupportFlag);
+		    });
+		  }
+
+		var country_code = geocoder.getResults();
+		console.log(country_code);
+*/
 		$scope.authentication = Authentication;
 		$scope.payment = Payment;
 		$scope.user_hadNoAccont = true;
 		$scope.myAppointment = myAppointment;
-		
-
 		$rootScope.user_exists = null;
 			$scope.$on('error', function(event, data){
 				$scope.error = data.message;
 			});
-
+			console.log($state.current.name);
 			$scope.$watch('myform', function (oldval, newval){
-				console.log(newval);
 		   	$scope.myAppointment.addData($scope.formData);
 			  
 		   	/*$scope.authentication.check_username($scope.formData, function(res){
@@ -25,25 +38,6 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
  				});*/
 		 	   });
 			
-
-/*
-			if($scope.formData.total_time.length > 0){
-				 $scope.formData.total_cost = $scope.formData.total_time*85;
-			}
-		*/
-/*
-
-
-			//Adds all the inputs into myAppointment in case of Log In etc
- 			$scope.$watch('myform.email', function (oldval, newval){
- 				if (oldval !== newval){
-	 				$scope.authentication.check_username($scope.credentials, function(res){
-	 					if(res.isUser === false){
-	 					$scope.show_password = true;
-						}
-	 				});
- 				}
-		 	   });*/
 
 			//Checks whether the user exists and offer them the log in
 			$scope.emailChanged = function(val) {
@@ -68,19 +62,78 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
 				$scope.testing = myAppointment.data;
 			});
 
+			$scope.checkGeocoder = function (){
+					geocoder.geocode($scope.authentication.user)
+					.success(function(res){
+						console.log(res);
+					});
+			};
+			$scope.getClosestStaff = function (){
+					$scope.formData = $scope.authentication.user;
+
+					var myvar = geocoder.getClosestStaff($scope.formData);
+					console.log(myvar);
+			};
+
+			$scope.sendEmail = function (appointmentId){
+					$http.get('/email/'+appointmentId)
+					.success(function(res){
+						console.log(res);
+					})
+					.error(function(res){
+						console.log(res);
+					});
+			};
+			$scope.getResults = function (){
+					geocoder.getResults($scope.formData)
+					.success(function(res){
+						console.log(res);
+					});
+			};
+
 			$scope.submitAction = function(){
+				if ($scope.authentication.user._id){
+					$scope.formData.updated = new Date();
+					$scope.formData.client = $scope.authentication.user._id;
+					$scope.formData.appointment_address = $scope.authentication.user.address.main_address;
+					console.log($scope.formData);
+
+					var appointment = new Appointments($scope.formData);
+					 appointment.$save(function(res){
+					 	notifications.showSuccess({message: 'Success! You should recieve an email shortly'});
+						var appointmentId = res._id;
+						$state.go('rdash.dash');
+					});
+				}
+
 				if(!$scope.user_hadNoAccont){
 					$scope.authentication.signin($scope.formData, function(data){
 						console.log(data);
+
 					});	
 				} else if($scope.user_hadNoAccont){
 					$scope.authentication.signUp($scope.formData, function(res){
 						console.log(res);
-						if(res.token === null){
+						console.log(res.token);
+						geocoder.geocode(res)
+						 .success(function(geores, status){
+						 		var results = geores.results[0].geometry.location;
+						 		console.log(results);
+				 				console.log(res);
+						 		$scope.formData.address.main_address.lat = results.lat;
+						 		$scope.formData.address.main_address.lng = results.lng;
+						 		$scope.myAppointment.addData($scope.formData);
+					    }).
+						error(function(err){
+								 	alert(err);
+						});
+
+						if(res.token === undefined){
 							$state.go('payment');
-						} else {
-							$state.go('rdash');
-						}
+							} else {
+								$state.go('rdash');
+							};
+						
 					});
 				}
 			};	
@@ -88,7 +141,7 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
 		$scope.book = false;
 		//sets the Select Data
 		$scope.items = [{
-		      desc: 'One Hour',
+		      desc: '60 Mins',
 		      hours: 1
 		    }, 
 		    {
@@ -96,15 +149,17 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
 		      hours: 1.5
 		    }, 
 		    {
-		      desc: 'Two Hours',
+		      desc: '120 Mins',
 		      hours: 2
 		    }];
 
 
 		  $rootScope.formData = {};
 	 	$scope.formData.total_cost = {
-		 		dollar_price: 85, 
-				cent_price: 85*100
+	 			dollar_total_price:hourly*1.13, 
+		 		dollar_price: hourly,
+		 		dollar_tax: hourly*0.13, 
+				cent_price: hourly*1.13*100
 		 	};
 	 	console.log($scope.formData.total_cost);
 
@@ -113,8 +168,10 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
 				$scope.setTotalPrice = function(formData){
 					var total_time = formData.total_time;
 					var total_cost = {
-						dollar_price: total_time*85, 
-					 	cent_price: total_time*85*100
+						dollar_total_price: (total_time* hourly*1.13).toFixed(2), 
+						dollar_price: (total_time*hourly).toFixed(2),
+						dollar_tax: (total_time*hourly*0.13).toFixed(2),
+					 	cent_price: total_time* hourly*1.13*100
 					 };
 					 $scope.formData.total_cost = total_cost; 
 				};
@@ -166,7 +223,6 @@ angular.module('core').controller('HomeController', ['$scope', '$rootScope', 'Au
 		   			$scope.book = true;
 			 	}
 		    });
-
 
 			//for the datetimepicker
 		 $scope.dateTimeNow = function() {

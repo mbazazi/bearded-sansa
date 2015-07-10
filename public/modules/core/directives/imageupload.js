@@ -46,16 +46,16 @@ angular.module('core').directive('image',
             }*/
             canvas.width = width;
             canvas.height = height;
-
+            var sourceWidth, sourceHeight;
 
             var sourceX = width*0.20;
             var sourceY = height*0.20;
             if (width || height > 500){
-                var sourceWidth = width/4;
-                var sourceHeight = height/4;
+                 sourceWidth = width/4;
+                 sourceHeight = height/4;
             } else {
-            var sourceWidth = width/2;
-            var sourceHeight = height/2;
+             sourceWidth = width/2;
+             sourceHeight = height/2;
             }
             var destWidth = sourceWidth;
             var destHeight = sourceHeight;
@@ -135,7 +135,7 @@ angular.module('core').directive('image',
                         scope.image = [];
 
                     var files = evt.target.files;
-                    for(var i = 0; i < files.length; i++) {
+                   /* for(var i = 0; i < files.length; i++) {
                         //create a result object for each file in files
                         var imageResult = {
                             file: files[i],
@@ -154,7 +154,7 @@ angular.module('core').directive('image',
                         else { //no resizing
                             applyScope(imageResult);
                         }
-                    }
+                    }*/
                 });
             }
         };

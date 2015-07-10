@@ -13,9 +13,28 @@
 	position: absolute;
 }
 
-.dash{
+.profile_picture{
+
+}
+
+.profile_picture .img{
+	position: relative;
+	margin: auto;
+}
+
+.profile_picture .preview{
+	position: relative;
+	top: 0px;
+	margin-bottom: 25px;
+	width:200px;
+}
+
+@media(min-width: 800px){
+	
+}
+/*.dash{
 	color: black;
 }
 .dash h1, h2, h3, h4, h5 {
 color: black;
-}
+}*/

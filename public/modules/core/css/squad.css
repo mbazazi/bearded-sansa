@@ -5,11 +5,13 @@ a {
   color: #ffb527;
 }
 a:hover {
-  color: #fff;
+  color: gray;
   text-decoration: none;
 
 }
-
+img {
+  z-index:4;
+}
 #sidebar-wrapper {
   margin-left: -180px;
   left: -50px;
@@ -22,17 +24,61 @@ a:hover {
 h1, h2, h3 {
   color: #fff;
 }
+.onboard{
+color: #fff;
+font-family: Lato;
+font-size: 1.1em;
+margin-bottom: 20px;
+
+}
+
+.onboard h3, 
+.onboard h2,
+.onboard strong{
+  color: #ffcc66;
+  text-align: center;
+}
+
+.onboard p{
+  color: #fff;
+  font-style: italic;
+}
+
+.onboard .circle{
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.onboard h1 .italic{
+}
+
+.border{
+  border: 2px solid #fff;
+  padding: 20px;
+ 
+}
 
 .view-container{
   margin-left: auto;
   margin-right: 20px;
   padding-top: 5px;
   margin-top:10px;
+   color: #fff;
+   border: 5px solid #ffcc66;
 }
 
-.view-container {
-  color: #fff;
+
+.white-bg {
+  background: #fff;
+    color: black
 }
+
+
+.white-bg h1, .white-bg h2, .white-bg h3{
+  color:black;
+}
+
+
 
 .has-error .form-control{
   border: 1px solid #ffb527; 
@@ -139,7 +185,7 @@ h1, h2, h3 {
   padding: 6px 6px;
   font-size: 14px;
   color: #fff; 
-  background-color: black;
+  background-color: #ffcc66;
 }
 
 .navbar-toggle .icon-bar {
@@ -158,14 +204,19 @@ background-color: white;
   border-bottom: 2px solid #fff;
 }
 */
-.input-underline{
+.input-underline, textarea {
   background: none;
   border: none;
   box-shadow: none;
   border-bottom: 2px solid rgba(255, 255, 255, 0.4);
   color: #FFF;
   border-radius: 0;
+  width: 100%;
+  -webkit-input-placeholder{
+    color: red;
+  }
 }
+
 
 
 .form-control::-webkit-input-placeholder { color: white; }
@@ -174,6 +225,22 @@ background-color: white;
 .form-control:-ms-input-placeholder { color: white; }
 
 
+
+#howitworks
+{
+  height: 500px;
+  width: 100%;
+}
+#howitworks p,
+#howitworks ul, 
+#howitworks li {
+  color: #fff;
+}
+
+.section, {
+  min-height: 350px;
+  
+}
 /* loader */
 #preloader {
   background: #ffffff;
@@ -274,10 +341,22 @@ hr {
 
 /* --- section bg var --- */
 .bg-white {
-  background: #fff; }
+  background: #fff; 
+  }
 
 .bg-gray {
-  background: #f8f8f8; }
+  background: #f8f8f8;
+  color:#434343;
+   }
+
+.bg-gray h1, 
+.bg-gray h2, 
+.bg-gray h3, 
+.bg-gray h4, 
+.bg-gray p{
+  font-family: Monserrat;
+  color:#434343;
+   }
 
 .bg-dark {
   background: #575757; }
@@ -517,11 +596,36 @@ form#contact-form input:focus, form#contact-form select:focus, form#contact-form
 --- Footer
 ============================ */
 footer {
-  text-align: center;
-  padding: 50px 0; }
+  text-align: left;
+  padding: 25px 0px 0px 0px;
+  background:#ffcc66; 
+  color: #fff;
+  z-index:10000;
+  padding-top: 20px;
+}
 
 footer p {
-  color: #f8f8f8; }
+  color: #fff; }
+
+footer a {
+  color: #fff;
+  cursor: pointer }
+
+
+footer i{
+  color: #6dbcbf;
+  padding-right: 15px;
+}
+
+footer ul, footer li{
+  padding-left: 0px;
+  color: #fff;
+
+}
+
+footer .right-footer ul {
+  text-align: right;
+}
 
 /* ==========================
 Parallax
@@ -559,6 +663,8 @@ Parallax
 ============================ */
 .btn {
   border-radius: 0;
+  border: 2px solid #ffcc66;
+  background: transparent;
   text-transform: uppercase;
   font-family: Montserrat,sans-serif;
   font-weight: 400;
@@ -729,3 +835,44 @@ Parallax
 .col-centered {
   float: none;
   margin: 0 auto; }
+
+/*Custom styles */
+.profile {
+    h1, h2, h3, p{
+  font-family: Lato;
+  color: black;
+  }
+}
+
+.biography li{
+  border-bottom: 1px solid gray;
+  width: 100%;
+  margin-left: -10%;
+  line-height: 2em;
+  margin-bottom:5px;
+}
+
+.biography li p{
+  padding-left: 10px;
+}
+.biography li blockquote{
+  font-style: italic;
+  padding-left: 10px;
+}
+
+/*Styles for the message create*/
+.message p {
+  white-space: pre-wrap;
+}
+
+.datetimepicker-wrapper .btn {
+  border: 0px;
+}
+
+.datetimepicker-wrapper ul,  .datetimepicker-wrapper li {
+background: #6dbcbf;
+color: #fff;
+
+}
+
+}

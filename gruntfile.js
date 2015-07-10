@@ -1,12 +1,6 @@
 'use strict';
-/*,
-			clientCSS: {
-				files: watchFiles.clientCSS,
-				tasks: ['csslint'],
-				options: {
-					livereload: true
-				}
-			}*/
+
+
 module.exports = function(grunt) {
 	// Unified Watch Object
 	var watchFiles = {

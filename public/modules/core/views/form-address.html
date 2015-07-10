@@ -1,14 +1,4 @@
-<!-- form-interests.html -->
 
-<!-- <div class="ng-invalid" ng-show="myform.name.$error.required && myform.$dirty">
-<p> <i class="icon icon-warning-sign"></i>Please enter your name</p></div>
--->
-
-<!-- <div class="form-group" ng-class="{ 'has-error' : myform.name.$invalid && !myform.$pristine }">
-    <label for="name">Name*</label>
-    <input type="text" class="form-control" name="name" ng-model="formData.name" ng-required="true">
-    <p ng-show="myform.name.$invalid && !myform.name.$pristine" class="help-block">You must enter a name</p>
-</div> -->
 <h1>Client Details</h1>
 <div ng-if="!authentication.user._id">
 <div>
@@ -31,9 +21,11 @@
 </div>     
 <div ng-if="user_hadNoAccont" class="form-group" ng-class="{ 'has-error' : myform.address.$invalid && !myform.address.$pristine || myform.city.$invalid && !myform.$pristine ||  myform.$invalid && !myform.$pristine}" >
 
-    <input type="text" class="form-control input-underline" name="address" ng-model="formData.address_1" placeholder="Address*"required>
-    <input type="text" class="form-control input-underline" name="city" ng-model="formData.city" placeholder="City e.g. Toronto*" required>
-    <input type="text" class="form-control input-underline" name="postcode" ng-model="formData.postcode" placeholder="Postal Code*" required>
+    <input type="text" class="form-control input-underline" name="address" ng-model="formData.address.main_address.street_1" placeholder="Address*"required>
+    <input type="text" class="form-control input-underline" name="city" ng-model="formData.address.main_address.city" placeholder="City e.g. Toronto*" required>
+    <input type="text" class="form-control input-underline" name="postcode" ng-model="formData.address.main_address.postcode" placeholder="Postal Code*" required>
+    <input type="hidden"  ng-model="formData.address.main_address.lat">
+    <input type="hidden"  ng-model="formData.address.main_address.lng">
     <p ng-show="myform.address.$invalid && !myform.address.$pristine" class="help-block">You must enter a full valid address</p>
     <p ng-show="myform.city.$error.required && !myform.city.$pristine" class="help-block">You must enter a full city for the address</p>
     <p ng-show="myform.postcode.$error.required && !myform.postcode.$pristine" class="help-block">You must enter a full postcode </p>
@@ -56,8 +48,8 @@
 </div>
 
 
-<div class="form-group row" ng-controller='AppointmentsController'>
-
+<div class="form-group row"><br>
+<pre>User HadNoAcconut: {{user_hadNoAccont}}</pre>
 <pre>Authentication User: {{authentication.user_exists}}</pre>
 <pre>Authentication Error: {{error}}</pre>
 <pre>The myAppointment Object: {{myAppointment}}</pre>

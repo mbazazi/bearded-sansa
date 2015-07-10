@@ -1,8 +1,8 @@
-<div class="row" data-ng-controller="AdminsController">
+<div class="row" ng-init="showUsers()">
   <div class="col-md-12 col-sm-10">
     <rd-widget>
       <rd-widget-header icon="fa-tasks" title="Users">
-      <button class="btn btn-sm btn-success"  ng-click="showStaff()">Show Staff</button>
+      <button class="btn btn-sm btn-success"  ng-click="showUsers()">{{btnText}}</button>
 
       <button class="btn btn-sm btn-success" ui-sref="adduser">Create User</button>
       <button class="btn btn-sm btn-success" ui-sref="create_appointment">Create Appointment</button>
@@ -24,14 +24,15 @@
                 <td>{{user.created | date:'mediumDate'}}</td>
                  <td>{{user.roles[0] }}</td>
               <!--   <td><button class="btn btn-warning" ng-click="removeUser(user)">Delete</button></td> -->
-                <td><button class="btn btn-danger" ui-sref="rdash.user({userId: user._id, userRole: user.roles[0]})">View</button></td>
+                <td><button class="btn btn-danger" ui-sref="user({userId: user._id, userRole: user.roles[0]})">View</button></td>
+                <td><button class="btn btn-danger" ng-click="remove(user)">Delete User</td>
                       </tr>
                       
                       </tr>
                     </table>
                      <dir-pagination-controls></dir-pagination-controls>
 
-        </div>      
+        </div>     
       </rd-widget-body>
       <rd-widget-footer>
         <ul class="pagination pagination-sm pull-right">
@@ -47,5 +48,6 @@
       </rd-widget-footer>
     </rd-widget>
   </div>
-  
 </div>
+
+

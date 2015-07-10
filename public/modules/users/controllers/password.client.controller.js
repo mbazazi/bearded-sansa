@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('users').controller('PasswordController', ['$scope', '$stateParams', '$http', '$location', 'Authentication',
-	function($scope, $stateParams, $http, $location, Authentication) {
+angular.module('users').controller('PasswordController', ['$scope', '$stateParams', '$http', '$location', 'Authentication', '$rootScope', 'ngToast',
+	function($scope, $stateParams, $http, $location, Authentication, $rootScope, ngToast) {
 		$scope.authentication = Authentication;
 		console.log($scope.authentication);
+		$rootScope.$broadcast('password_reset');
 		//If user is signed in then redirect back home
 		if ($scope.authentication.user) $location.path('/');
 
@@ -33,9 +34,13 @@ angular.module('users').controller('PasswordController', ['$scope', '$stateParam
 
 				// Attach user profile
 				Authentication.user = response;
-
+				$rootScope.$emit('password_reset');
 				// And redirect to the index page
-				$location.path('/password/reset/success');
+				$location.path('/dashboard');
+				ngToast({
+					content: 'Your password was changed successfully', 
+					className: 'success'
+				});
 			}).error(function(response) {
 				$scope.error = response.message;
 			});

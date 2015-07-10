@@ -8,20 +8,31 @@ var passport = require('passport');
 module.exports = function(app) {
 	// User Routes
 	var users = require('../../app/controllers/users.server.controller');
+	var appointments = require('../../app/controllers/appointments.server.controller');
 
 	// Setting up the users profile api
 	app.route('/users').get(users.list);
 	app.route('/users/me').get(users.me);
 	app.route('/users').put(users.update);
-
+	app.route('/users').post(users.create_user);
 	
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
 	app.route('/users/:id').delete(users.removeUser);
+	app.route('/users').delete(users.removeAdmin);
+
 	app.route('/users/:id').get(users.getOne);
 	app.route('/users/:id').put(users.update);
 
 	app.route('/staff').get(users.get_staff);
-/*
+	app.route('/staff').post(users.new_staff_application);
+
+	app.route('/staff/:id').delete(users.removeUser);
+	app.route('/email/:appointmentId/:excludedUser').get(users.sendEmail);
+	app.route('/email/done/:appointmentId').get(users.sendInvoice);
+	app.route('/email/accept/:staffId/appointmentId/:appointmentId').get(appointments.update);
+
+
+/*	app.route('/email/:staffId').get(users.sendAppointmentEmail);
 
 	app.route('/users/:roles/:id').put(users.update);*/
 
@@ -72,4 +83,6 @@ module.exports = function(app) {
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
+	app.param('appointmentId', appointments.appointmentByID);
+
 };

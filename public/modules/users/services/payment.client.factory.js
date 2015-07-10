@@ -1,57 +1,33 @@
 'use strict';
 
 // Authentication service for user variables
-angular.module('core').factory('Payment', ['$rootScope', 'Users', '$cookieStore', '$state', 'Stripe', 'Authentication', 'ngToast', '$sce', '$q', 'Appointments', '$resource',
-	function($rootScope, Users, $cookieStore, $state, Stripe, Authentication, ngToast, $sce, $q, Appointments, $resource){
-var user = Authentication._data.user;
-var payment = {};
-payment.token = '';
-payment.data = {};
-payment.counter = 0;
-	payment.getStripeToken = function(status, response) {
-    		
-		if (response.error) {
-		    // Show the errors on the form 
-		  /*!!!!!!!!!!!!C onfigure the error showing on the page*/
-		   console.log(response);
-       ngToast.create({
-        content: response.error.message,
-        className: 'danger'
-       });
-		   payment.error = response.error;
-		   return response;
-		  } else {
-		    // response contains id and card, which contains additional card details
-		    var token = response;
-		    payment.token = token;
-        
-        $state.go('profile');
-		    $rootScope.$emit('card_change');
-		    
-		    return payment.token;
-    	}
+angular.module('core').factory('Payment', ['$rootScope', 'Users',  '$state', 'Stripe', 'Authentication', 'ngToast', '$sce', '$q', 'Appointments', '$resource', '$http',
+	function($rootScope, Users,  $state, Stripe, Authentication, ngToast, $sce, $q, Appointments, $resource, $http){
+   
+    var user = Authentication._data.user;
+    var payment = {};
+    payment.token = '';
+    payment.data = {};
+  	payment.getStripeToken = function(status, response) {
+      	
+  		if (response.error) {
+         ngToast.create({
+          content: response.error.message,
+          className: 'danger'
+         });
+  		   payment.error = response.error;
+  		   return response;
+  		  } else {
+  		    // response contains id and card, which contains additional card details
+  		    var token = response;
+  		    payment.token = token;
+          
+          $state.go('profile');
+  		    $rootScope.$emit('card_change');
+  		    
+  		    return payment.token;
+      	}
     };
-
-   /*  payment.charge = function () {
-    	var card = payment.getToken();
-    	card
-        return $http.post('https://yourserver.com/payments', payment);
-      })
-      .then(function (payment) {
-        console.log('successfully submitted payment for $', payment.amount);
-      })
-      .catch(function (err) {
-        if (err.type && /^Stripe/.test(err.type)) {
-          console.log('Stripe error: ', err.message);
-        }
-        else {
-          console.log('Other error occurred, possibly with your API', err.message);
-        }
-      });
-  };*/
-
-
-
 
     payment.getToken = function(){
     	return payment.token;
@@ -63,8 +39,8 @@ payment.counter = 0;
 
       //pass the new token to Stripe resource to create a Customer Object
       var stripe = new Stripe(token);
-      console.log(stripe);
       stripe.$save().then(function(res){
+        console.log(res);
         //update the user object with the new stripeCustomer Data
         var newuser = new Users(user); 
         newuser.stripeCustomer = res.stripeCustomer;
@@ -73,6 +49,7 @@ payment.counter = 0;
           newuser.$update().then(function(updatedUser) {
             Authentication._data.user = updatedUser;
             Authentication.user = updatedUser;
+              $rootScope.$emit('show_card');
             callback(updatedUser);
           }, function(errorResponse) {
             payment.error = errorResponse.data.message;
@@ -80,9 +57,12 @@ payment.counter = 0;
       });  
     };
 
-    payment.createRefund = function(appointmentID){
+    payment.createRefund = function(appointmentID, dollarAmount, callback){
       console.log(appointmentID);
-      var id = '5578489d5988bc32b5455207';
+console.log(dollarAmount);
+      var refundAmount = {};
+
+  
        Appointments.get({ 
             appointmentId: appointmentID
           }).$promise.then(function(data){
@@ -93,65 +73,89 @@ payment.counter = 0;
                   dismissButton: true, 
                   content: 'This customer has not been charged'
                 });
+              } else if(data.refundObj[0] !== undefined){
+                 ngToast.create({
+                  className: 'danger',
+                  dismissButton: true, 
+                  content: 'This refund has already been made'
+                });
+                 return;
               } else {
 
+                 if (dollarAmount !== null){
+                  refundAmount = dollarAmount*100;
+                 } else {
+                  refundAmount = data.stripeChargeObj.amount;
+                 };
+                 console.log(data.stripeChargeObj.amount);
+                 console.log(refundAmount);
+
                 var refundDetails = {
-                  amount: 2200,
+                  refundAmount: refundAmount,
                   chargeID: data.stripeChargeObj.id, 
                   reason: 'No show', 
                   stripeCustomer: user.stripeCustomer.id
                 };
-                var myresource = $resource('stripe/refund/:chargeID', {chargeID: '@chargeID'});
-                var stripe = new myresource(refundDetails);
+                var Myresource = $resource('stripe/refund/:chargeID', {chargeID: '@chargeID'});
+                var stripe = new Myresource(refundDetails);
                 console.log(stripe);
                 stripe.$save().then(function(refundRes){
                   console.log(refundRes);
                   data.refundObj.push(refundRes.refund);
-                  data.$update().then(function(){
+                  data.$update().then(function(result){
+                    
                     ngToast.create({
                     className: 'success',
                     dismissButton: true, 
                     content: refundRes.message
                     });
+                  
+                    callback(result);
                   });
                   
-                }, function(data){
+                }, function(err){
                   //This is the errror handler
-                  console.log(data);
-                
-                   ngToast.create({
+                  console.log(err);
+                  
+                     ngToast.create({
                     className: 'danger',
                     dismissButton: true, 
-                    content: data.data.error.message
+                    content: err.data.error.message
                   });
                 });
               }
           });
     };
 
-    payment.createCharge = function(user, appointmentID){
+    payment.createStaffAccount = function (account_details){
+      console.log(account_details);
+       $http.post('stripe/staff/create', account_details)
+       .success(function(result){
+        console.log(result);
+       }).error(function(err){
+        console.log(err);
+
+       })
+    };
+
+    payment.createCharge = function(user, appointmentID, callback){
+      console.log(user);
       if (user.stripeCustomer === undefined){
         payment.error = 'You must add a valid card to proceed';
       } else {
         console.log(user.stripeCustomer.id);
-        var Obj = {token: user.stripeCustomer.id};
+        var Obj = {token: user.stripeCustomer.id, appointment_id: appointmentID };
          var stripe = new Stripe(Obj);
-           stripe.$charge().then(function(res){
+          stripe.$charge().then(function(res){
             Appointments.get({ 
             appointmentId: appointmentID
             })
             .$promise.then(function(data){
               data.stripeChargeObj = res.chargeObj;
-              Appointments.update(data).$promise.then(function(data) {
-                console.log(data);
-              }, function(err){
-                console.log('Update Error '+err);
-                   ngToast.create({
-                    className: 'success',
-                    dismissButton: true, 
-                    content: err.data.message.message
-                    });
-              });
+              data.jobDone = true;
+              data.cost = res.amount;
+              callback(data);
+           
             }, function(err){
               console.log('Get Error '+err);
                 ngToast.create({
@@ -160,7 +164,6 @@ payment.counter = 0;
                     content: err.data.message.message
                     });
               });
-          console.log(res);
 
             ngToast.create({
                   className: 'success',

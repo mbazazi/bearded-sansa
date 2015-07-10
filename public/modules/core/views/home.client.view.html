@@ -1,3 +1,4 @@
+
 <section data-ng-controller="HomeController">
 
 <div class="container-fluid ">	
@@ -27,14 +28,14 @@
                 </div>
             </form>
 </div>
-    <div class="col-md-4 view-container from-top">
+    <div class="col-md-4 from-top">
     <div ui-view="checkout"></div>
     </div>
 </div>
-
+<!-- 
 <pre>MyAppointment Var is: {{myAppointment}}</pre>
 <pre>$scope.FormData Var is: {{formData}}</pre>
-
+ -->
     	
     		<!-- 
     		<div class="page-scroll">
@@ -42,88 +43,57 @@
     				<i class="fa fa-angle-double-down animated"></i>
     			</a>
     		</div> -->
-</div>  
 
 </section>
+</div>
+ <hr>
+<div class="row">
+  <div class="container-fluid bg-gray">
+   
+    <div class="onboard" >
+            <div class="col-md-8 col-sm-12 pull-left">
+              <h1><span class="italic">What is </span><strong>Händer</strong></h1>
+        
+                <p>Hander is a new service for people who want a quick and reliable Registered Massage Therapist.</p>
+                <p>We vet and screen all of our therapists, 
+                ensuring that they are all  fully qualified and registered with the College of Massage 
+                Therapists. </p>
+                <p>Whether its for an injury, as part of ongoing 
+            treatment, or to increase wellness and wellbeing, we have the best therapist for you. </p>
 
-	<!-- /Section: intro -->
+             <p>You can enjoy a massage in the comfort and security of your own home, and can make arrangements to suit your lifestyle and schedule. </p>
 
-	<!-- Section: about -->
- <!--    <section id="about" class="home-section text-center">
-		<div class="heading-about">
-			<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2">
-					<div class="wow bounceInDown" data-wow-delay="0.4s">
-					<div class="section-heading">
-					<h2>About us</h2>
-					<i class="fa fa-2x fa-angle-down"></i>
-
-					</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		<div class="container">
-
-		<div class="row">
-			<div class="col-lg-2 col-lg-offset-5">
-				<hr class="marginbot-50">
-			</div>
-		</div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3 col-md-3">
-				<div class="wow bounceInUp" data-wow-delay="0.2s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-						<h5>Anna Hanaceck</h5>
-                        <p class="subtitle">Pixel Crafter</p>
-                        <div class="avatar"><img src="img/team/1.jpg" alt="" class="img-responsive img-circle" /></div>
-                    </div>
-                </div>
-				</div>
             </div>
-			<div class="col-xs-6 col-sm-3 col-md-3">
-				<div class="wow bounceInUp" data-wow-delay="0.5s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-						<h5>Maura Daniels</h5>
-                        <p class="subtitle">Ruby on Rails</p>
-                        <div class="avatar"><img src="img/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
-
-                    </div>
-                </div>
-				</div>
+            <div class="col-md-4" style="top:5px;">
+              <img src="/img/smiling_faces.jpg" width="100%">
             </div>
-			<div class="col-xs-6 col-sm-3 col-md-3">
-				<div class="wow bounceInUp" data-wow-delay="0.8s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-						<h5>Jack Briane</h5>
-                        <p class="subtitle">jQuery Ninja</p>
-                        <div class="avatar"><img src="img/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+    </div>
+  </div>
+</div>
+ <hr>
+<div class="row section" ng-show="$state.current.name === 'home'" id="howitworks">
+  <div class="container-fluid ">
+     <div class="col-md-12">
+       <h1>How it works</h1>
+     </div>
+     <div class="col-md-4">
+       <img src="/img/bedroom.jpg" height="400px"><br>
+       <span class="small">Source: <a href="http://www.apartmenttherapy.com/10-great-finds-beautiful-linen-bedding-219389?crlt.pid=camp.lwPryn4yY9ul#.3einge:CASA">Apartment Therapy</a></span>
+     </div>
+      <div class="col-md-7">
+      <p>Booking a Registered Massage Therapist couldn't be easier. Just click 'Book Now' above to get started. That will make the booking and set you up on the system. 
+      <p>
+       Since out RMTs are flexible - you can choose a time that best suits your schedule and lifestyle. This way you can enjoy a stress free and relaxing experiences.  </p>
+        <ul>
+          <li>Nam maximus enim leo, vel porta est vestibulum eget.</li><li> Quisque eget semper nisl. </li>
+          <li>Duis venenatis placerat pellentesque. Nam cursus sapien in lorem semper, malesuada vestibulum tortor suscipit.</li>
+        </ul>
+      <p> Pellentesque eget est rutrum, condimentum est sit amet, rhoncus nisl. Pellentesque scelerisque lacus id lacinia malesuada. Nulla rutrum lorem libero. Fusce lacinia semper ipsum id vestibulum. Vestibulum sit amet nisi tristique, pharetra orci quis, blandit metus.</p>
 
-                    </div>
-                </div>
-				</div>
-            </div>
-			<div class="col-xs-6 col-sm-3 col-md-3">
-				<div class="wow bounceInUp" data-wow-delay="1s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-						<h5>Tom Petterson</h5>
-                        <p class="subtitle">Typographer</p>
-                        <div class="avatar"><img src="img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+      </div>
+      
+  </div>
 
-                    </div>
-                </div>
-				</div>
-            </div>
-        </div>		
-		</div>
-	</section> -->
-	<!-- /Section: about -->
-	
+</div>
 
-	<!-- Section: services -->
+

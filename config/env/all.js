@@ -2,9 +2,9 @@
 
 module.exports = {
 	app: {
-		title: 'myMeanApp',
-		description: 'Full Stack Mean Example',
-		keywords: 'MongoDB, Express, AngularJS, Node.js'
+		title: 'Hander',
+		description: 'Registered Massage Therapists on Demand',
+		keywords: 'Registered, Massage, Therapy, on demand, RMT'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
@@ -17,9 +17,12 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.css', 
 				'public/lib/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css',
 				'public/lib/ngtoast/dist/ngToast.min.css', 
-				'public/lib/ngtoast/dist/ngToast-animations.min.css'				/*
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-				'public/modules/core/css/mystyle.css',*/
+				'public/lib/ngtoast/dist/ngToast-animations.min.css', 
+				'public/lib/angucomplete-alt/angucomplete-alt.css', 
+				'public/lib/ng-notifications-bar/dist/ngNotificationsBar.min.css',
+				'public/lib/angular-busy/dist/angular-busy.min.css',
+				'public/lib/angular-chart.js/dist/angular-chart.min.css', 
+				'public/lib/angular-image-crop/image-crop-styles.css'
 			],
 			js: [
 				'public/lib/jquery/dist/jquery.js',
@@ -45,15 +48,13 @@ module.exports = {
 				'public/lib/angular-google-maps/dist/angular-google-maps.js',
 				'public/lib/ng-file-upload-shim/ng-file-upload-shim.min.js',
 				'public/lib/ng-file-upload/ng-file-upload.min.js', 
-				'public/lib/ngtoast/dist/ngToast.min.js'
-				/*'public/lib/oclazyload/dist/ocLazyLoad.js', 
-				'public/lib/metisMenu/dist/metisMenu.js', 
-				'public/lib/json3/lib/json3.js', 
-				'public/lib/es5-shim/es5-sham.js', 
-				'public/lib/es5-shim/es5-shim.js', 
-				'public/lib/Chart.js/src/*.js', 
-				'public/lib/angular-chart.js/dist/angular-chart.js', 
-				'public/lib/angular-loading-bar/build/loading-bar.js'*/
+				'public/lib/ngtoast/dist/ngToast.min.js',
+				'public/lib/angucomplete-alt/dist/angucomplete-alt.min.js', 
+				'public/lib/ng-notifications-bar/dist/ngNotificationsBar.min.js', 
+				'public/lib/angular-busy/dist/angular-busy.min.js',
+				'public/lib/Chart.js/Chart.min.js',
+				'public/lib/angular-chart.js/dist/angular-chart.min.js', 
+				'public/lib/angular-image-crop/image-crop.js'
 
 			]
 		},
@@ -64,6 +65,7 @@ module.exports = {
 			'public/config.js',
 			'public/application.js',
 			'public/modules/*/*.js',
+			'public/modules/*/javascripts/*.js',
 			'public/modules/*/*[!tests]*/*.js'
 		],
 		tests: [

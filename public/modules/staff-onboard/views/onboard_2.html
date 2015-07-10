@@ -1,0 +1,76 @@
+<div class="containr">
+<section>
+	<div class="row onboard">
+
+	<h2>RMT Application Form</h2>	
+				<div class="col-md-8 col-md-offset-2 border">
+				<form name="onboardForm">
+<div class="form-group">
+		<input type="text" class="form-control" name="firstname" ng-model="user.firstName"placeholder="First Name" required>
+		<input type="text" class="form-control" name="lastname" ng-model="user.lastName"placeholder="Last Name" required>
+		<input type="email" class="form-control" name="email" ng-model="user.email" placeholder="Email"required>
+		<input type="tel" class="form-control" name="phone" ng-model="user.phone" placeholder="Phone" required>
+	</div>
+	<p ng-show="onboardForm.firstname.$invalid && !onboardForm.firstname.$pristine" class="help-block">You must enter your first name</p>
+	<p ng-show="onboardForm.lastname.$invalid && !onboardForm.lastname.$pristine" class="help-block">You must enter your last name</p>
+	<p ng-show="onboardForm.email.$invalid && !onboardForm.email.$pristine" class="help-block">You must enter your email address</p>
+	<p ng-show="onboardForm.phone.$invalid && !onboardForm.phone.$pristine" class="help-block">You must enter your phone number</p>
+
+	<div class="form-group">
+		 <input type="text" class="form-control input-underline" name="address" ng-model="user.address.main_address.street_1" placeholder="Address*" required>
+	    <input type="text" class="form-control input-underline" name="city" ng-model="user.address.main_address.city" placeholder="City e.g. Toronto*" required>
+	    <input type="text" class="form-control input-underline" name="postcode" ng-model="user.address.main_address.postcode" placeholder="Postal Code*" required>
+	  
+	</div>
+  <p ng-show="onboardForm.address.$invalid && !onboardForm.address.$pristine" class="help-block">You must enter a full valid address</p>
+	    <p ng-show="onboardForm.city.$error.required && !onboardForm.city.$pristine" class="help-block">You must enter a full city for the address</p>
+	    <p ng-show="onboardForm.postcode.$error.required && !onboardForm.postcode.$pristine" class="help-block">You must enter a full postcode </p>
+
+<div class="form-group">
+		 <input type="text" class="form-control input-underline" name="rmt_license" ng-model="user.license" placeholder="RMT Licence" required>
+	    
+	    <p ng-show="onboardForm.rmt_license.$invalid && !onboardForm.rmt_license.$pristine" class="help-block">You must enter a your RMT license number</p>
+	    
+	</div>
+
+
+
+<!-- 	<div class="col-md-6">
+            <p class="input-group">
+              <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div> -->
+
+	<!-- <div class="form-group" >
+		<div class="col-md-6">
+            <p class="input-group">
+              <input type="text" ng-model="user.legal_entity.dob"  class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-mode='year' datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+	</div> -->
+<div class="col-xs-6 col-xs-offset-4 col-md-offset-5">
+	<div class="col-xs-12">
+	<button ng-disabled="onboardForm.$invalid"  ng-class="{'btn btn-danger' : onboardForm.$invalid, 'btn btn-success' : onboardForm.$valid}" ng-click="sendApplication(user)">Submit</button>
+	</div>
+</div>
+</form>
+				</div>
+
+	
+
+	</div>
+ 
+
+</section>
+
+</div>
+
+<pre>{{onboardForm}}</pre>
+
+<pre>{{user}}</pre>

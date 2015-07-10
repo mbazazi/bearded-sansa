@@ -7,12 +7,33 @@
   src: url(../fontawesome/fonts/fontawesome-webfont.woff);
 }
 
+@font-face{
+  font-family: Airstream;
+  src: url(../../fonts/airstream/airstreamNF.otf) format('embedded-opentype');
+}
+
+
+/*Background color: #6dbcbf;*/
+/* yellow color: #ffcc66;*/ 
+
+
 body {
-  padding-bottom: 20px; }
+  padding-bottom: 20px; 
+  font-family: Lato;
+  color: #fff;
+}
+
+body h1, h2{
+  padding-bottom: 5px; 
+  font-family: Monserrat;
+  font-style: bold;
+}
 
 em {
   font-style: normal;
   text-decoration: none; }
+
+
 
 /*Styles the drop down heading or table
 */ .sortorder:after {
@@ -72,7 +93,7 @@ em {
     padding-left: 10px; }
 
 .btn {
-  border-radius: 2px; }
+  border-radius: 0px; }
 
 .center-form {
   width: 500px;
@@ -133,9 +154,7 @@ em {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2); }
 
 .navbar {
-  box-shadow: 0 3px 2px -3px rgba(0, 0, 0, 0.1);
-    background-color: #3ca2e0;
-   
+background: #6dbcbf;
    }
 
 .navbar-header {
@@ -143,9 +162,8 @@ em {
   padding-left: 15px; }
 
 .navbar-brand {
-  font-family: 'Pacifico', cursive;
-  font-size: 25pt;
-  margin-left: -15px; 
+  font-family: 'Airstream', cursive;
+  font-size: 3em;
  }
 
   .navbar-brand a {
@@ -156,7 +174,7 @@ em {
 }
 
 .navbar-brand-text:hover{
-  color: #fff;;
+  color: #ffde9b;
 }
 
 
@@ -171,8 +189,10 @@ em {
 
 .content{
   /*background: #30426a;*/
-  background: #3ca2e0;
-}
+  
+    background: #6dbcbf;
+/*  background: #3ca2e0;
+*/}
 input.ng-invalid.ng-dirty.ng-touched {
   border: 1px solid red; }
 
@@ -185,6 +205,72 @@ input.ng-invalid.ng-dirty.ng-touched {
 
 }
 
+.form-control{
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  color: #FFF;
+  border-radius: 0;
+  width: 100%;
+  -webkit-input-placeholder{
+    color: red;
+  }
+}
+
+.sidebar_home{
+  background-repeat: no-repeat;
+  width: 400px;
+  padding: 20px;
+  right:30px;
+  position: relative;
+  top: -40px;
+}
+.sidebar_home img{
+  width: 100%;
+  outline: 10px solid #ffcc66;
+  outline-offset: -34px;
+}
+
+.innerdiv .middleText {
+  font-family: Lato;
+}
+.sidebar_home h1 {
+  color: #ffcc66;
+  font-size: 45px;
+  text-align: center;
+  font-family: Monserrat;
+  font-weight: bold;
+  letter-spacing: 5px;
+
+   position: absolute; 
+   top: 44px; 
+   left:0px; 
+   width: 100%; 
+}
+.innerdiv .airstream{
+  font-family: Airstream;
+  font-size: 50px;
+}
+
+@media (max-width: 990px){
+  .sidebar_home{
+  width: 80%;
+  margin-left:15%;
+}
+
+  .sidebar_home img{
+    width: 100%;
+    margin: auto auto;
+    
+} 
+  .sidebar_home h1, .innerdiv .airstream{
+   font-size: 8vw;
+} 
+
+
+  
+}
 /* style.css */
 /* BASIC STYLINGS
 ============================================================================= */
@@ -321,6 +407,30 @@ input.ng-invalid.ng-dirty.ng-touched {
 .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
     display: none;   
 }
+
+/*Styling for Radio buttons*/
+.form-group input[type="radio"] {
+    display: none;
+}
+
+.form-group input[type="radio"] + .btn-group > label span {
+    width: 20px;
+}
+
+.form-group input[type="radio"] + .btn-group > label span:first-child {
+    display: none;
+}
+.form-group input[type="radio"] + .btn-group > label span:last-child {
+    display: inline-block;   
+}
+
+.form-group input[type="radio"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.form-group input[type="radio"]:checked + .btn-group > label span:last-child {
+    display: none;   
+}
+
 
 /*Styles for the form-goups on the date page ENDS
 */

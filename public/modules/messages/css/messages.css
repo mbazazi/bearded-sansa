@@ -1,0 +1,27 @@
+.form-control[disabled]{
+	background: transparent;
+}
+
+.message_container{
+	border: 3px solid #fff;
+}
+
+.padded{
+	margin-top: 10px;
+}
+.message{
+	color:#fff;
+	white-space: pre-wrap;
+	margin-top: -45px;
+
+}
+
+.message h4, h5{
+	margin-bottom: 0px;
+	margin-top: -50px;
+
+}
+
+.message_read{
+	background: gray;
+}

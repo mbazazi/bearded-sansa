@@ -231,8 +231,9 @@ body {
   left: -30px;
   width: 250px;
   position: fixed;
-  height: 100%;
+  height: 720px;
   z-index: 999;
+  background: #6dbcbf;
 }
 #page-wrapper,
 #sidebar-wrapper {
@@ -268,16 +269,15 @@ div.input-mask {
 /**
  * Sidebar
  */
-#sidebar-wrapper {
-  background: #30426a;
 
-}
 ul.sidebar .sidebar-main a,
 .sidebar-footer,
 ul.sidebar .sidebar-list a:hover,
 #page-wrapper:not(.open) ul.sidebar .sidebar-title.separator {
   /* Sidebar header and footer color */
-  background: #2d3e63;
+/*  background: #2d3e63;
+*/
+  background: #ffcc66;
 }
 ul.sidebar {
   position: absolute;
@@ -328,7 +328,8 @@ ul.sidebar .sidebar-list {
 ul.sidebar .sidebar-list a {
   text-indent: 25px;
   font-size: 15px;
-  color: #b2bfdc;
+/*  color: #b2bfdc;*/
+  color: #fff;
   line-height: 40px;
 }
 ul.sidebar .sidebar-list a:hover {
@@ -419,6 +420,7 @@ ul.sidebar .sidebar-list .menu-icon {
 .widget .widget-header i {
   margin-right: 5px;
 }
+
 .widget .widget-body {
   padding: 20px;
 }
@@ -431,6 +433,13 @@ ul.sidebar .sidebar-list .menu-icon {
 .widget .widget-body table tbody * {
   font-size: 13px !important;
 }
+
+.widget .widget-body table span .fa{
+  font-size: 18px !important;
+  margin: 3px 50%;
+  color: #6dbcbf;
+}
+
 .widget .widget-body .error {
   color: #ff0000;
 }
@@ -489,3 +498,29 @@ ul.sidebar .sidebar-list .menu-icon {
   font-size: 28px;
   display: block;
 }
+
+.widget-content .btn, .widget-header .btn {
+  background:  #6dbcbf ;
+  border: 1px solid transparent;
+  border-radius: 2px;
+/*  border-color: #ffcc66;*/
+}
+
+.widget-content .btn-success:hover, .widget-header .btn-success:hover{
+  background:  #ffcc66 ;
+  border: 1px solid transparent;
+  border-radius: 2px;
+/*  border-color: #ffcc66;*/
+}
+.widget-content .btn-danger, .widget-header .btn-danger{
+  background:  #ffcc66 ;
+  border: 1px solid transparent;
+  border-radius: 2px;
+/*  border-color: #ffcc66;*/
+}
+
+.widget-content .btn-danger:hover, .widget-header .btn-danger:hover{
+     background:  #d9534f ;
+
+}
+
