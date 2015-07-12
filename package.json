@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "author": "Mo",
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.4.x"
+    "node": "0.12.x",
+    "npm": "2.5.1"
   },
   "css_source": "bootstrap",
   "scripts": {
