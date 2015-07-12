@@ -22,7 +22,7 @@ var fs = require('fs'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
 	path = require('path'),
-	stripe = require('stripe')('sk_test_Ti4SYMYKTgO1Or9j6ITUCG1H'),
+	stripe = require('stripe')('sk_test_Ti4SYMYKTgO1Or9j6ITUCG1H');
 
 
 module.exports = function(db) {
