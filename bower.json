@@ -29,7 +29,8 @@
     "stripe-angular": "1.0.2", 
     "angular-bootstrap-switch":"0.4.0", 
     "Chart.js":"1.0.2", 
-    "ngtoast": "1.5.3"
+    "ngtoast": "1.5.3", 
+    "angucomplete-alt":"1.0.0"
   },
   "resolutions": {
     "angular-bootstrap": "0.12.1",
