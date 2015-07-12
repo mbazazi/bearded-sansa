@@ -77,7 +77,7 @@ angular.module('users').factory('Authentication', [ '$http',  '$state',  '$locat
 					$state.go('profile');
 				}else{
 				// And redirect to the index page
-					$state.go('rdash.dash', {response}, {reload: true});
+					$state.go('rdash.dash');
 				}
 			}).error(function(response) {
 				$rootScope.$broadcast('error', response);
