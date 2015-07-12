@@ -12,7 +12,7 @@ var _ = require('lodash'),
 	var path = require('path');
 	var fs = require('fs');
 	var logger = require('morgan');
-	var multer = require('multer');
+
 /**
  * Update user details
  */

@@ -23,7 +23,6 @@ var fs = require('fs'),
 	consolidate = require('consolidate'),
 	path = require('path'),
 	stripe = require('stripe')('sk_test_Ti4SYMYKTgO1Or9j6ITUCG1H'),
-	multer = require('multer');
 
 
 module.exports = function(db) {
@@ -84,8 +83,8 @@ module.exports = function(db) {
 	}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
-	app.use(multer({dest:'./temp_uploads'}));
-	//for the multi part forms
+/*	app.use(multer({dest:'./temp_uploads'}));
+*/	//for the multi part forms
 /*	
 */	
 /*	console.log('MULTER IS HERE:'+multer);
