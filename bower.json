@@ -1,7 +1,7 @@
 {
   "name": "mymeanapp",
   "version": "0.0.1",
-  "description": "Hands Website",
+  "description": "Hander Website",
   "dependencies": {
     "bootstrap": "~3",
     "bootstrap-switch":"3.3.2",
@@ -21,6 +21,7 @@
     "angular-chart.js": "~0.7.1",
     "angular-bootstrap-simple-chat": "~0.0.2",
     "ng-notifications-bar": "~0.0.15",
+    "ng-file-upload":"5.0.0",
     "angularjs-datepicker": "~0.2.5",
     "angular-utils-pagination": "~0.8.2",
     "angular-image-crop": "*",
