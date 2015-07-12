@@ -1,7 +1,7 @@
 'use strict';
-
+var db_string =  'hander:BmR172177@ds047642.mongolab.com:47642/hander';
 module.exports = {
-	db: 'mongodb://localhost/mymeanapp-dev',
+	db: 'mongodb://'+db_string || 'mongodb://localhost/mymeanapp-dev',
 	app: {
 		title: 'Hander - RMTs on Demand'
 	},
