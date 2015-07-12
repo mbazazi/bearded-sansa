@@ -22,7 +22,8 @@
     "angularjs-datepicker": "~0.2.5",
     "angular-utils-pagination": "~0.8.2",
     "angular-image-crop": "*",
-    "angularjs-scroll-glue": "~0.0.1"
+    "angularjs-scroll-glue": "~0.0.1",
+    "stripe-angular": "1.0.2"
   },
   "resolutions": {
     "angular-bootstrap": "0.12.1",
