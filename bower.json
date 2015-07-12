@@ -4,6 +4,7 @@
   "description": "Hands Website",
   "dependencies": {
     "bootstrap": "~3",
+    "bootstrap-switch":"3.3.2",
     "angular": "~1.4",
     "angular-resource": "latest",
     "angular-mocks": "latest",
@@ -23,7 +24,10 @@
     "angular-utils-pagination": "~0.8.2",
     "angular-image-crop": "*",
     "angularjs-scroll-glue": "~0.0.1",
-    "stripe-angular": "1.0.2"
+    "stripe-angular": "1.0.2", 
+    "angular-bootstrap-switch":"0.4.0", 
+    "chart.js":"1.0.2", 
+    "ngtoast": "1.5.3"
   },
   "resolutions": {
     "angular-bootstrap": "0.12.1",
